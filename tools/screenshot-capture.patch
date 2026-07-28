@@ -1,0 +1,119 @@
+diff --git a/src/WindowsPhoneSpeedyBlupi/Game1.cpp b/src/WindowsPhoneSpeedyBlupi/Game1.cpp
+index 56ebb35..10edb62 100644
+--- a/src/WindowsPhoneSpeedyBlupi/Game1.cpp
++++ b/src/WindowsPhoneSpeedyBlupi/Game1.cpp
+@@ -71,7 +71,10 @@
+ 
+ #include "WindowsPhoneSpeedyBlupi/Game1.hpp"
+ 
++#include <cstdint>
++#include <cstdlib>
+ #include <string>
++#include <vector>
+ 
+ #include "CNA/Logger.hpp"
+ #include "Microsoft/Xna/Framework/GamerServices/Guide.hpp"
+@@ -79,6 +82,11 @@
+ #include "Microsoft/Xna/Framework/Input/Mouse.hpp"
+ #include "Microsoft/Xna/Framework/Input/MouseCursor.hpp"
+ #include "Microsoft/Xna/Framework/Input/Touch/TouchPanel.hpp"
++// mobile-eggbert-bible TEMPORARY SCREENSHOT HOOK: see
++// tools/screenshot-capture.patch in the mobile-eggbert-bible repo for the
++// rationale. These two headers are only used by the hook below.
++#include "Microsoft/Xna/Framework/Graphics/GraphicsDevice.hpp"
++#include "Microsoft/Xna/Framework/Graphics/Texture2D.hpp"
+ #include "System/EventArgs.hpp"
+ #include "System/String.hpp"
+ #include "WindowsPhoneSpeedyBlupi/Config.hpp"
+@@ -563,6 +571,91 @@ namespace WindowsPhoneSpeedyBlupi
+         }
+         pixmap->EndBatch();
+         Game::Draw(gameTime);
++
++        // =====================================================================
++        // BEGIN mobile-eggbert-bible TEMPORARY SCREENSHOT-CAPTURE HOOK
++        // -----------------------------------------------------------------
++        // Not part of the game. Added only to capture real, actually-rendered
++        // screenshots for the mobile-eggbert-bible book (see that repo's
++        // tools/SCREENSHOT_ATTEMPT.md and tools/screenshot-capture.patch,
++        // which is exactly this diff). Entirely inert unless the
++        // MEB_SCREENSHOT_DIR environment variable is set. Saves one
++        // title/menu screenshot once the Init (main menu) phase is reached,
++        // then synthesizes the same SetPhase(Play, 1) call InitPlay's button
++        // handler makes (Update(), case Def::ButtonGlyph::InitPlay above) to
++        // reach real gameplay, waits for the phase to actually become Play
++        // (mirrors the game's own fade/mission-start state machine — see the
++        // phase-transition graph in this file's header comment), saves a
++        // second screenshot, then exits the process.
++        if (const char* outDir = std::getenv("MEB_SCREENSHOT_DIR"))
++        {
++            static int frameCount = 0;
++            static bool titleSaved = false;
++            static bool playRequested = false;
++            static int playFrameCount = 0;
++            static bool gameplaySaved = false;
++            ++frameCount;
++
++            auto saveBackBufferScreenshot = [&](const std::string& fileName)
++            {
++                using Microsoft::Xna::Framework::Color;
++                using Microsoft::Xna::Framework::Rectangle;
++                using Microsoft::Xna::Framework::Graphics::Texture2D;
++
++                auto& device = Game::getGraphicsDeviceProperty();
++                const auto& vp = device.getViewportProperty();
++                const int width = vp.getWidthProperty();
++                const int height = vp.getHeightProperty();
++                if (width <= 0 || height <= 0)
++                {
++                    return;
++                }
++                const Rectangle region(0, 0, width, height);
++                const std::size_t count = static_cast<std::size_t>(width) * static_cast<std::size_t>(height);
++                std::vector<Color> pixels(count, Color(0, 0, 0, 0));
++                device.GetBackBufferData(&region, pixels.data(), 0, static_cast<int>(count));
++
++                std::vector<std::uint8_t> rgba(count * 4);
++                for (std::size_t i = 0; i < count; ++i)
++                {
++                    rgba[i * 4 + 0] = static_cast<std::uint8_t>(pixels[i].getRProperty());
++                    rgba[i * 4 + 1] = static_cast<std::uint8_t>(pixels[i].getGProperty());
++                    rgba[i * 4 + 2] = static_cast<std::uint8_t>(pixels[i].getBProperty());
++                    rgba[i * 4 + 3] = static_cast<std::uint8_t>(pixels[i].getAProperty());
++                }
++                Texture2D shot = Texture2D::CreateFromPixels(device, width, height, rgba);
++                const std::string path = std::string(outDir) + "/" + fileName;
++                shot.SaveAsPng(path);
++                CNA::Logger::Info("[meb-screenshot-hook] saved " + path);
++            };
++
++            if (!titleSaved && phase == Def::Phase::Init && frameCount > 5)
++            {
++                saveBackBufferScreenshot("screenshot-title-menu.png");
++                titleSaved = true;
++            }
++            if (titleSaved && !playRequested)
++            {
++                // Same call InitPlay's button handler makes (see Update() above).
++                SetPhase(Def::Phase::Play, 1);
++                playRequested = true;
++            }
++            if (playRequested && phase == Def::Phase::Play)
++            {
++                ++playFrameCount;
++                if (!gameplaySaved && playFrameCount > 30)
++                {
++                    saveBackBufferScreenshot("screenshot-gameplay.png");
++                    gameplaySaved = true;
++                }
++            }
++            if (gameplaySaved)
++            {
++                std::exit(0);
++            }
++        }
++        // END mobile-eggbert-bible TEMPORARY SCREENSHOT-CAPTURE HOOK
++        // =====================================================================
+     }
+ 
+     void Game1::DrawBackgroundFade()
