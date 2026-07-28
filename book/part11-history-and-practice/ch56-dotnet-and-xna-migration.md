@@ -173,6 +173,84 @@ class names, method names, and even its historical enum values, fully qualified 
 experience would recognize every one of the calls above immediately; a reader with no XNA
 background is, in effect, being shown 2010-era XNA idioms through a C++ lens.
 
+## Even the state-machine's own interface is XNA-shaped
+
+The pattern isn't confined to the obviously platform-facing files like `Pixmap.cpp`. `IGame1.hpp`
+— the abstract interface `Game1` implements and every other subsystem calls back through (covered
+in [Chapter 13](../part03-architecture/ch13-igame1-and-dependencies.md)) — declares its two most
+central methods with XNA's own signatures verbatim:
+
+*From `IGame1.hpp:132`:*
+```cpp
+virtual void Update(Microsoft::Xna::Framework::GameTime& gameTime) = 0;
+```
+
+*From `IGame1.hpp:179`:*
+```cpp
+virtual void Draw(const Microsoft::Xna::Framework::GameTime& gameTime) = 0;
+```
+
+`Update(GameTime)` / `Draw(GameTime)` is *the* defining method pair of an XNA 4.0 `Game`
+subclass — every XNA or MonoGame tutorial ever written introduces exactly this pair, in exactly
+this shape, as the first thing a new game class overrides. Seeing it survive not just in `Game1`
+itself but in the abstract interface that decouples every other subsystem from `Game1` shows how
+deep the XNA lifecycle model was carried into this C++ codebase: it isn't a compatibility shim
+bolted onto an otherwise-independent architecture, it *is* the architecture's own top-level
+contract.
+
+Two smaller, more surgical examples round out the picture of how narrowly XNA types are pulled in
+only where genuinely needed:
+
+*From `def/GameSpeed.hpp:121-129`* uses `Microsoft::Xna::Framework::Input::Keys` purely to convert
+a function-key press into a `GameSpeed` enum value — a single, self-contained conversion function
+that needs XNA's key-code enum as input but has nothing else to do with rendering or the game
+loop:
+```cpp
+static constexpr auto ToGameSpeed(const Microsoft::Xna::Framework::Input::Keys key) -> GameSpeed
+{
+    switch (key)
+    {
+        case Microsoft::Xna::Framework::Input::Keys::F5: ...
+```
+
+And `Misc::RotateAdjust` (covered in [Chapter 48](../part09-support-types/ch48-misc-utility-functions.md))
+takes and returns an XNA `Rectangle` directly rather than this project's own `TinyRect`:
+
+*From `Misc.hpp:67-68`:*
+```cpp
+[[nodiscard]] static Microsoft::Xna::Framework::Rectangle RotateAdjust(
+    const Microsoft::Xna::Framework::Rectangle& rect,
+```
+
+— a reminder that `mobile-eggbert` maintains *two* rectangle types side by side (its own
+lightweight `TinyRect`, described in [Chapter 47](../part09-support-types/ch47-tinypoint-tinyrect.md),
+and XNA's `Rectangle` via CNA), choosing between them per call site depending on whether a given
+function sits closer to the game's own internal data model or to an XNA-facing API boundary
+(`SpriteBatch::Draw`, in `Rectangle`'s case, genuinely requires the XNA type).
+
+## The rule that keeps the migration from drifting: sharp-runtime
+
+One methodological detail from the project's own `CLAUDE.md` (not this book's) is directly
+relevant to understanding why the migration reads as consistently XNA-faithful rather than as an
+ad-hoc mix of "whatever was convenient in C++ at the time": a standing rule that any missing piece
+of .NET base-class-library or XNA behavior must be added to a shared dependency, never
+worked around locally.
+
+*From `CLAUDE.md:27-29`:*
+```markdown
+**If something needed by this project or by CNA does not yet exist in sharp-runtime, it must be
+added to sharp-runtime — not worked around in-place.**
+```
+
+`sharp-runtime` — a separate sibling repository providing C++ reimplementations of .NET primitives
+(`System.Math`, `System.String`, `EventHandler<T>`, `IDisposable`, the `bytecs`/`intcs` type
+aliases used throughout this codebase) — and `cna` together form the two shared dependencies that
+absorb essentially all XNA/.NET-compatibility work, so that `mobile-eggbert` itself never needs to
+invent a one-off local substitute for a missing framework type. This is the structural reason the
+89 `Microsoft::Xna::Framework` call sites catalogued above look so uniformly faithful to real
+XNA — they are not `mobile-eggbert`'s own approximation of XNA, they are calls into a shared,
+disciplined re-implementation maintained one level down the dependency stack.
+
 ## One surprising survivor: `GamerServices::Guide` in live C++ code
 
 Grepping specifically for `GamerServices` and `TrialMode` in the C++ tree turns up a detail worth

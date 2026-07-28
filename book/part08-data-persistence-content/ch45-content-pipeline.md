@@ -24,6 +24,19 @@ The `Content/` directory has exactly three subdirectories, no nesting beyond tha
 *(Directory contents verified directly, `Content/icons/`, `Content/backgrounds/`,
 `Content/sounds/` — see `mobile-eggbert/Content/`.)*
 
+Breaking the 38 background files down further: 28 are `decorNNN.png` per-region art
+(`decor000.png` through `decor031.png`, but with gaps — `decor005`, `decor014`, `decor017`, and
+`decor023` do not exist), 7 are fixed single-purpose UI-phase backgrounds (`init.png`, `pause.png`,
+`lost.png`, `win.png`, `setup.png`, `trial.png`, `wait.png`), and 3 are special-purpose images
+loaded eagerly at startup (`speedyblupi.png`, `blupiyoupie.png`, `gear.png`, discussed below).
+Cross-checking the `region=` values actually used across all 78 `worlds/*.txt` files
+(see [Chapter 44](ch44-worlds-level-file-format.md)) against the available `decorNNN.png` files
+confirms the gaps are intentional, not missing assets: every `region=` value that appears in a real
+level file (`0`–`4`, `6`–`13`, `15`–`16`, `18`–`22`, `24`–`31`) has a matching PNG on disk, and the
+four skipped numbers (`5`, `14`, `17`, `23`) are never referenced by any shipped level either —
+whatever regions those numbers once denoted were apparently retired from both the level data and
+the art assets together, consistently.
+
 Two things are conspicuously absent from this list, and both are worth calling out because a reader
 skimming a typical XNA-derived game's `Content/` folder might expect them: there is no `.xnb`
 compiled-content pipeline output anywhere (the original Windows Phone / XNA build would have run a
@@ -242,9 +255,28 @@ convention explicitly:
 Two guard conditions can skip sound loading entirely: the compile-time `SOUND_DISABLED` macro
 (defined automatically whenever `SOUND_ENABLED` is not externally defined —
 `Sound.cpp:56-58` — useful for headless/unit-test builds that must never touch an audio backend),
-and the runtime `Def::getHasSoundProperty()` check, which presumably reflects a platform or
-device-level capability flag. Either one causes `LoadContent()` to return immediately, leaving
-`soundEffects` empty and every later `Load`-dependent playback call effectively a no-op.
+and the runtime `Def::getHasSoundProperty()` check. Reading that check's actual definition shows it
+is not a live capability probe at all:
+
+*From `Def.hpp:195-198`:*
+```cpp
+        static constexpr bool getHasSoundProperty()
+        {
+            return true;
+        }
+```
+
+It is a `constexpr` function that always returns `true` — a vestige of what was presumably, on the
+original Windows Phone hardware line, a genuine per-device or per-platform capability flag (some
+early Windows Phone models shipped without functioning audio, or a build target needed to disable
+sound entirely), now permanently pinned "on" in this port. `AUDIO_ANALYSIS.md` (an existing analysis
+document in the repository, not this book's own conclusion — see
+[Chapter 40](../part06-audio/ch40-audio-issue-analysis.md) for a full treatment) independently flags
+this same function as always-`true` and "not currently platform-sensitive." In practice this means
+the only way sound loading is actually skipped in a real build today is the compile-time
+`SOUND_DISABLED` path, not this runtime check. Either guard, when active, causes `LoadContent()` to
+return immediately, leaving `soundEffects` empty and every later `Load`-dependent playback call
+effectively a no-op.
 
 ## Content loading is entry-point-driven, not lazy-on-first-use (mostly)
 

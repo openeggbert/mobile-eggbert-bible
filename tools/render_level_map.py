@@ -127,11 +127,7 @@ def parse_world_file(path: Path) -> Tuple[dict, List[List[int]]]:
     grid: List[List[int]] = []
     for line in lines[decor_idx + 1: decor_idx + 1 + dim_h]:
         cells = line.split(",")
-        row = [(-1 if c.strip() == "" else int(c)) for c in cells if c != "" or True]
-        # Real files emit a trailing empty token after the final comma; trim
-        # it if the row is exactly one cell longer than dim_w.
-        if len(row) == dim_w + 1 and row[-1] == -1:
-            row = row[:-1]
+        row = [(-1 if c.strip() == "" else int(c)) for c in cells]
         grid.append(row)
     if len(grid) != dim_h:
         raise ValueError(f"{path}: expected {dim_h} Decor rows, found {len(grid)}")
