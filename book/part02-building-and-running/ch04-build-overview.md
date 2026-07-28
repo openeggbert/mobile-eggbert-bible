@@ -2,7 +2,7 @@
 
 Everything about how `mobile-eggbert` gets turned into a running binary — on Linux, Windows,
 the Web, or Android — is decided by a single, deliberately compact file: the top-level
-`CMakeLists.txt` at the repository root. At 247 lines it is short for a file that has to steer
+`CMakeLists.txt` at the repository root. At 246 lines it is short for a file that has to steer
 four very different target platforms and up to thirteen different graphics backends, and that
 compactness is itself a design decision the file's own comments explain: an earlier, longer
 version of this file duplicated logic that already lived in `cna`'s build system, and it kept
