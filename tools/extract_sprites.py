@@ -260,9 +260,13 @@ def generate_blupi_actions(me_root: Path, out_dir: Path, tables: Dict[str, List[
     element_img = Image.open(me_root / "Content/icons/element.png")
     atlas_imgs = {"Blupi": blupi_img, "Element": element_img}
 
-    records = parse_table_blupi_records(tables["table_blupi"])
-    print(f"[blupi] parsed {len(records)} table_blupi action records "
-          f"(array length {len(tables['table_blupi'])})")
+    all_records = parse_table_blupi_records(tables["table_blupi"])
+    degenerate = [r for r in all_records if r["frame_count"] <= 0 or r["action_raw"] not in action_names]
+    records = [r for r in all_records if r["frame_count"] > 0 and r["action_raw"] in action_names]
+    print(f"[blupi] parsed {len(all_records)} raw table_blupi records "
+          f"(array length {len(tables['table_blupi'])}); {len(records)} map to a real "
+          f"BlupiAction with frames, {len(degenerate)} are degenerate/filler entries "
+          f"(e.g. the (-1,-1,-1) padding stretch between raw actions 76 and 77) and are skipped")
 
     seen_actions = set()
     for rec in records:
@@ -296,6 +300,19 @@ def generate_blupi_actions(me_root: Path, out_dir: Path, tables: Dict[str, List[
                  f"{threshold_note}, channel(s) {'/'.join(sorted(channels_used))}.",
         ))
     print(f"[blupi] wrote {len(records)} action contact sheets")
+
+    unmatched_names = sorted(set(action_names.values()) - {action_names[r["action_raw"]] for r in records})
+    manifest.append(dict(
+        file="(none — table_blupi format notes)",
+        source="Tables::table_blupi (Tables.cpp) / Decor::BlupiSearchIcon (Decor.cpp:2123-2452)",
+        desc=(f"table_blupi contains {len(degenerate)} degenerate/filler record(s) whose raw "
+              f"action id does not correspond to any real BlupiAction (all observed as a "
+              f"(-1,-1,-1)-style padding stretch between the records for raw actions 76 and 77); "
+              f"these are skipped, not rendered. BlupiAction values with no table_blupi record at "
+              f"all: {', '.join(unmatched_names) if unmatched_names else '(none)'}. "
+              f"blupi1.png is never referenced by any table_blupi-driven action -- see "
+              f"object-038-electric-arc.png for the one real use of blupi1.png in this catalog."),
+    ))
 
 
 # ---------------------------------------------------------------------------

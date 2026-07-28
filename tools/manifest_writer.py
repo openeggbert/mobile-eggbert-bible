@@ -56,7 +56,7 @@ def build_manifest(out_dir: Path) -> None:
         lines.append("| File | Source data | Description |")
         lines.append("|---|---|---|")
         for e in entries:
-            file_cell = f"`{e['file']}`" if e["file"] != "(none — static icon, not an animation)" else "*(none)*"
+            file_cell = f"`{e['file']}`" if not e["file"].startswith("(none") else f"*{e['file']}*"
             source_cell = e["source"].replace("|", "\\|")
             desc_cell = e["desc"].replace("|", "\\|")
             lines.append(f"| {file_cell} | {source_cell} | {desc_cell} |")

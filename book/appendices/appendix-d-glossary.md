@@ -231,6 +231,13 @@ and [Chapter 17](../part04-decor-simulation/ch17-blupi-state-machine.md).
 at 100×100, with each tile occupying `DIMOBJX`×`DIMOBJY` (64×64) game-space pixels. See
 [Chapter 16](../part04-decor-simulation/ch16-tile-map.md).
 
+**TinyPoint / TinyRect** *(technical)* — `mobile-eggbert`'s lightweight integer 2D point and
+rectangle structures, used throughout the codebase in place of `System.Drawing`-style types.
+`TinyRect` has a **non-standard field order** — `Left, Right, Top, Bottom`, not the conventional
+`Left, Top, Right, Bottom` — inherited unchanged from the original C# source and flagged with an
+explicit `@warning` in `TinyRect.hpp`'s file-level comment. See
+[Chapter 47](../part09-support-types/ch47-tinypoint-tinyrect.md).
+
 **Ventillo** *(game-specific, French-derived: "ventilo," colloquial short form of "ventilateur,"
 fan)* — Internal name for the fan-hazard tile. `Decor::IsVentillo()` is documented as testing for
 "an active fan tile that pushes Blupi" (`Decor.hpp:1423-1426`), confirming the translation
@@ -242,6 +249,13 @@ item-collection animation: a collected item visually travels from its pickup poi
 destination (e.g. the treasure counter). `Decor::VoyageInit()` is documented directly as
 "Initialises a Voyage (item-collection arc) animation" (`Decor.hpp:1765-1774`), confirming the
 translation directly. Advanced per-frame by `VoyageStep()` and drawn by `VoyageDraw()`.
+
+**Worlds** *(technical/project-specific)* — The static-helper class implementing all level-file
+and save-game text I/O: a line-based `<section>: field=value …` grammar with typed field encodings
+(`int`, `double`, `bool`, `x;y` points, comma-separated int arrays), plus the special `Decor:` and
+`Doors:` sections that store the tile grid and door state as raw comma-separated rows
+(`Worlds.hpp`'s file-level `@details`). See
+[Chapter 44](../part08-data-persistence-content/ch44-worlds-level-file-format.md).
 
 **XNA** *(technical)* — Microsoft's XNA Framework, the original 2013 Windows Phone game's
 programming API (`Game`, `SpriteBatch`, `ContentManager`, `GameTime`, etc.). `mobile-eggbert`'s

@@ -108,6 +108,20 @@ def parse_table_blupi_records(flat: List[int]):
     matching the real loop condition -- does not require reaching the end of
     the physical array.
     """
+    # Note (discovered by running this parser against the real Tables.cpp
+    # data, not anticipated from reading the algorithm alone): the array
+    # contains short stretches of degenerate (-1, -1, -1) filler entries
+    # between some real records (e.g. between the records for raw action 76
+    # and raw action 77). shortcs is signed, BlupiAction's raw type is an
+    # unsigned byte (0-87), so -1 can never equal a real ToRaw(action) value
+    # at runtime -- Decor::BlupiSearchIcon's real linear scan walks straight
+    # through this filler without ever matching it, advancing by
+    # table_blupi[i+1]+3 = -1+3 = 2 each step, exactly like this parser does
+    # below. This is real, harmless padding in the shipped data, not a
+    # parser bug; degenerate records (frame_count <= 0, so no real frames)
+    # are still returned here so callers can see and report them, but they
+    # never correspond to a playable BlupiAction and are filtered out by
+    # generate_blupi_actions() before rendering.
     records = []
     i = 0
     n = len(flat)
@@ -115,12 +129,15 @@ def parse_table_blupi_records(flat: List[int]):
         action_raw = flat[i]
         frame_count = flat[i + 1]
         threshold = flat[i + 2]
-        frames = flat[i + 3: i + 3 + frame_count]
-        if len(frames) != frame_count:
-            raise ValueError(
-                f"table_blupi record at offset {i} claims {frame_count} frames "
-                f"but only {len(frames)} remain in the array"
-            )
+        if frame_count > 0:
+            frames = flat[i + 3: i + 3 + frame_count]
+            if len(frames) != frame_count:
+                raise ValueError(
+                    f"table_blupi record at offset {i} claims {frame_count} frames "
+                    f"but only {len(frames)} remain in the array"
+                )
+        else:
+            frames = []
         records.append(dict(
             action_raw=action_raw,
             frame_count=frame_count,
@@ -128,5 +145,8 @@ def parse_table_blupi_records(flat: List[int]):
             frames=frames,
             offset=i,
         ))
-        i += frame_count + 3
+        next_i = i + frame_count + 3
+        if next_i <= i:
+            raise ValueError(f"table_blupi record at offset {i} would not advance (frame_count={frame_count})")
+        i = next_i
     return records
