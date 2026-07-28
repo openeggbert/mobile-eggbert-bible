@@ -51,6 +51,18 @@ self-contained build output directory:
 > You can copy this entire directory to any Windows machine and run the game without installing
 > MinGW, CLion, or any other runtime.
 
+The practical motivation behind this is straightforward but easy to overlook: without it, a build
+produced inside CLion's development environment is only really runnable *inside* that same
+environment (or on another machine with an identical MinGW/MSYS2 install on `PATH`). For a project
+whose other platforms already produce copy-and-run output — the Linux build links against
+system-provided shared libraries a normal Linux install already has, and Chapters 8 and 9 cover the
+Web and Android builds' own self-contained packaging — a Windows build that silently depended on
+its author's specific development machine would be the one platform that couldn't be handed to a
+tester or player without also handing them a compiler toolchain. `WINDOWS.md` closes that specific
+gap for MinGW builds, and only for them; it says nothing about, and has no bearing on, MSVC builds
+of the same project, which link against Microsoft's own runtime and face a different (and
+unaddressed, in this document) redistribution story of their own.
+
 ## How the two fixes are actually wired into the build
 
 ### Static linking of the GCC/C++ runtime
