@@ -171,10 +171,10 @@ directly (there is no side index of action-ID-to-offset anywhere in the codebase
 `BlupiSearchIcon()` call re-scans from `i = 0`). The array is terminated the moment a record's
 `actionId` field is literally `0` — not `-1`, not any other sentinel.
 
-The frame-selection arithmetic is the one place this chapter's task explicitly called for
-verification against a plausible-but-unconfirmed description ("phase % frameCount unless a
-special-threshold branch applies"), and the real logic is subtly more specific than that
-paraphrase: when `specialThreshold` is `0` (no threshold set) *or* the current (possibly-halved)
+The frame-selection arithmetic is worth checking carefully against a plausible-but-unconfirmed
+paraphrase one might otherwise settle for ("phase % frameCount unless a special-threshold branch
+applies"), because the real logic is subtly more specific: when `specialThreshold` is `0` (no
+threshold set) *or* the current (possibly-halved)
 phase `num6` is still within the threshold, the frame index is the ordinary looping
 `num6 % frameCount`. But once `num6` **exceeds** a *non-zero* threshold, the frame index becomes
 the threshold value itself, verbatim — not wrapped, not clamped to `frameCount - 1`, just pinned

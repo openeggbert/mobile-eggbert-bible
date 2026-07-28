@@ -1,6 +1,8 @@
 # Chapter 56: The .NET and XNA Migration
 
-## What `.Net and XNA used part.md` actually contains
+This chapter is about how thoroughly `mobile-eggbert` actually carried XNA's API surface across
+its migration to C++ — a question `mobile-eggbert`'s own documentation turns out not to answer
+directly, which is itself worth reading closely before turning to the source code that does.
 
 The repository ships a file named `.Net and XNA used part.md` (the space-containing filename is
 exact — this is not a typo introduced by this book). Read in full, here is the entirety of its

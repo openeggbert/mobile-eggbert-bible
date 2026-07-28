@@ -1,7 +1,5 @@
 # Chapter 58: TODO.md — A Point-in-Time Snapshot
 
-## What this chapter is, and isn't
-
 `TODO.md` is 15 lines long. This chapter reads all of them and presents what they say about the
 project's open issues as of the commit this book was written against (`07e0a67`). It is
 deliberately short, in proportion to its source: there is no forward-looking roadmap document

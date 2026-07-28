@@ -1,7 +1,5 @@
 # Chapter 57: The Doxygen Documentation Methodology
 
-## Overview
-
 `mobile-eggbert` documents its own documentation effort. Two files govern it:
 `DOXYGEN_DOCUMENTATION_PLAN.md` (512 lines) — a per-file audit of documentation completeness across
 every `.hpp`/`.cpp` file in the project, plus a written style guide — and `Doxyfile`, the actual

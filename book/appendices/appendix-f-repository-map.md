@@ -115,3 +115,14 @@ internal APIs beyond the one dependency rule quoted above, and does not list any
 under the same organisation) belongs to
 [Chapter 2](../part01-origins-and-ecosystem/ch02-openeggbert-ecosystem-map.md), which is free to
 draw on additional sources beyond these two files.
+
+## See also
+
+- [Chapter 1: What Is Mobile Eggbert](../part01-origins-and-ecosystem/ch01-what-is-mobile-eggbert.md)
+- [Chapter 2: The OpenEggbert Ecosystem Map](../part01-origins-and-ecosystem/ch02-openeggbert-ecosystem-map.md)
+  — the narrative companion to this appendix.
+- [Chapter 3: License and Provenance](../part01-origins-and-ecosystem/ch03-license-and-provenance.md)
+- [Chapter 14: The XNA API via CNA](../part03-architecture/ch14-xna-api-via-cna.md) — what
+  `mobile-eggbert` actually calls through CNA's abstraction.
+- [Appendix B: Enum Catalog](appendix-b-enum-catalog.md) — `SharpRuntime` alias types referenced
+  from every enum's underlying type.

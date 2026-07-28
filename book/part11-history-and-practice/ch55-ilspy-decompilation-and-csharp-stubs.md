@@ -1,7 +1,5 @@
 # Chapter 55: ILSpy Decompilation and the Residual C# Stubs
 
-## Introduction: fossils in a C++ repository
-
 `mobile-eggbert` is a C++ project — `CMakeLists.txt` builds a single executable target
 (`WindowsPhoneSpeedyBlupi`) from `file(GLOB_RECURSE SOURCES "src/*.cpp")`
 (`CMakeLists.txt:90`), and every line of gameplay logic described elsewhere in this book lives
@@ -109,7 +107,7 @@ The port path was: original C# → decompiled with ILSpy → migrated to MonoGam
 → migrated from MonoGame to **CNA**.
 ```
 
-[ILSpy](https://github.com/icsharplib/ILSpy) is an open-source .NET decompiler. Applying it to the
+[ILSpy](https://github.com/icsharpcode/ILSpy) is an open-source .NET decompiler. Applying it to the
 original Windows Phone 7 XNA game's compiled assembly (a `.xap`/`.dll`) does not recover the
 *original* handwritten source — it reconstructs C# source code that is behaviorally equivalent to
 the compiled IL, complete with whatever the decompiler chooses for naming, formatting, and

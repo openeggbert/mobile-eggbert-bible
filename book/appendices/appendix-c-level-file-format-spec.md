@@ -13,7 +13,7 @@ against real files sampled from `mobile-eggbert/worlds/` (78 files, `world001.tx
 `Decor` grid (18 distinct icon values present, range -1..413), built by `tools/render_level_map.py`
 directly from the real level file plus the `Decor::Is*()` collision predicates and
 `Tables::table_decor_quart` (see `book/images/MANIFEST.md`). It illustrates the same file used as
-the worked example in §C.9 below.
+the worked example in §C.9 below.*
 
 ## C.1 Two file kinds, one grammar
 
