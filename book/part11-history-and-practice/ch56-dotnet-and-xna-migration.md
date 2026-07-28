@@ -203,10 +203,12 @@ contract.
 Two smaller, more surgical examples round out the picture of how narrowly XNA types are pulled in
 only where genuinely needed:
 
-*From `def/GameSpeed.hpp:121-129`* uses `Microsoft::Xna::Framework::Input::Keys` purely to convert
+`def/GameSpeed.hpp:121-129` uses `Microsoft::Xna::Framework::Input::Keys` purely to convert
 a function-key press into a `GameSpeed` enum value — a single, self-contained conversion function
 that needs XNA's key-code enum as input but has nothing else to do with rendering or the game
 loop:
+
+*From `def/GameSpeed.hpp:121-129`:*
 ```cpp
 static constexpr auto ToGameSpeed(const Microsoft::Xna::Framework::Input::Keys key) -> GameSpeed
 {

@@ -6,7 +6,7 @@
 
 - `include/WindowsPhoneSpeedyBlupi/**/*.hpp`: 34 files
 - `src/WindowsPhoneSpeedyBlupi/**/*.cpp`: 16 files
-- Total C++ (`.hpp` + `.cpp`) plus a handful of residual `.cs` stubs: **31,301 lines**
+- Total C++ (`.hpp` + `.cpp`) plus a handful of residual `.cs` stubs: **31,394 lines**
   - `Decor.cpp` alone: **11,720 lines** (over a third of the whole project — the gameplay
     simulation core)
   - `Tables.cpp`: 2,208 lines, `Decor.hpp`: 2,064 lines, `InputPad.cpp`: 1,970 lines,
@@ -261,7 +261,7 @@ screenshots per Appendix G's "why there are only two" note) rather than filling 
 ### 2026-07-28 — Project founding, then pivot to English + illustrated scope
 - Empty `mobile-eggbert-bible` repository (no commits). Added and cloned `mobile-eggbert` (primary
   source) and `cna-bible` (style/methodology model) into the session.
-- Measured source code size (31,301 lines of C++, `Decor.cpp` = 11,720 lines as the core).
+- Measured source code size (31,394 lines of C++, `Decor.cpp` = 11,720 lines as the core).
 - First draft of the plan was written in **Czech** with 54 chapters/6 appendices and no image
   plan. The author then clarified mid-session: (1) the book must be in **English**; (2) CNA is to
   be covered only marginally, mobile-eggbert is the sole subject; (3) the book must include real

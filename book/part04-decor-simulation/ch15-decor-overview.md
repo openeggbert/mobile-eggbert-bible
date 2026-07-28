@@ -18,7 +18,7 @@ win and loss.
 
 The numbers make the point better than words. The declaration, `include/WindowsPhoneSpeedyBlupi/Decor.hpp`,
 is 2,064 lines — already the second-largest header in the project. The implementation,
-`src/WindowsPhoneSpeedyBlupi/Decor.cpp`, is **11,720 lines**, out of a total codebase of 31,301
+`src/WindowsPhoneSpeedyBlupi/Decor.cpp`, is **11,720 lines**, out of a total codebase of 31,394
 lines of C++. One file, in other words, is over a third of the entire project. No other class
 comes remotely close (`Tables.cpp`, the second-largest translation unit, is 2,208 lines — roughly
 a fifth the size). This chapter is the reader's first real orientation to that file: what `Decor`

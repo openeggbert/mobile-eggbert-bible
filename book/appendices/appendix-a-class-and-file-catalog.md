@@ -3,7 +3,7 @@
 This appendix catalogs every `.hpp` and `.cpp` file in `include/WindowsPhoneSpeedyBlupi/` and
 `src/WindowsPhoneSpeedyBlupi/` as of `mobile-eggbert`'s `develop` branch (commit `07e0a67`,
 measured 2026-07-28 — see `PLAN.md`). The count is **34 headers** and **16 source files**, for
-**50 files** and **31,301 lines** total (verified directly with `find`/`wc -l`, not taken on
+**50 files** and **31,394 lines** total (verified directly with `find`/`wc -l`, not taken on
 faith from prior documentation).
 
 Purposes are drawn from each file's top-of-file Doxygen `@file`/`@brief` comment — per
@@ -133,7 +133,7 @@ lines) is over a third of the entire codebase.
 | Header files (`.hpp`) | 34 |
 | Source files (`.cpp`) | 16 |
 | Total files | 50 |
-| Total lines (headers + sources) | 31,301 (per `PLAN.md`, measured with `wc -l`) |
+| Total lines (headers + sources) | 31,394 (per `PLAN.md`, measured with `wc -l`) |
 | Largest header | `Decor.hpp` — 2,064 lines |
 | Largest source | `Decor.cpp` — 11,720 lines (over a third of the whole codebase) |
 | Smallest header | `def/Zoom.hpp` — 32 lines (MODERN-only, `#ifdef`-guarded) |
