@@ -597,12 +597,22 @@ to find — the function always returns the first `183` tile found scanning back
 consistent with it being called from a cheat-code handler (`CleanAll`/`AllTreasure`-style cheats,
 [Chapter 23](../part04-decor-simulation/ch23-secret-powers-and-cheat-system.md)) that iterates `n`
 externally, re-scanning each time. All three search functions are grounded in raw `m_decor[][]`
-icon numbers, which is the same invisible gameplay-classification layer discussed in
-[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) and
-[Appendix C](../appendices/appendix-c-level-file-format-spec.md) — icons `68` (lava, via `IsLave`),
-`373` (trap, via `IsPiege`), `174`–`182` (door signs and door tile), and `183` (gold) are all
-examples of numeric tile values whose meaning comes entirely from how `Decor.cpp`'s `Is*()`
-predicates and hand-written comparisons interpret them, not from any visible sprite atlas lookup.
+icon numbers — the same gameplay-classification values catalogued exhaustively in
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) and referenced again in
+[Appendix C](../appendices/appendix-c-level-file-format-spec.md): icon `68` (lava, via `IsLave`),
+`373` (trap, via `IsPiege`), `174`–`182` (door signs and door tile), and `183` (gold). As
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) establishes by reading
+`Decor::Build()` directly, these same integers stored in a level file's `Decor:` block are, for the
+large majority of static tiles, *also* the literal sprite index `Decor::Build()` passes straight
+through to `Pixmap::QuickIcon(PixmapChannel::Object, icon, pos)` — one raw integer in the file
+therefore doubles as both a `Decor.cpp` hazard/collision classification key and a direct index into
+the `object-m.png` sprite atlas, with only a small, enumerable set of animated/hazard icons (lava
+`68` among them) remapped through a dedicated per-icon animation table before being drawn. This
+corrects an earlier, unverified hypothesis recorded in this project's own `PLAN.md` that these icon
+numbers formed a purely invisible logic layer separate from all visible art — reading
+`Decor::Build()`'s actual render loop shows that is true only for the *background* parallax scenery
+(`Content/backgrounds/decorNNN.png`, loaded via `Pixmap::BackgroundCache`,
+[Chapter 45](ch45-content-pipeline.md)), not for the foreground tile grid itself.
 
 ## Summary
 

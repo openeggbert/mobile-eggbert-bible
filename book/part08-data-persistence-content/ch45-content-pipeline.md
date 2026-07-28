@@ -185,13 +185,18 @@ is no eviction logic to worry about because there is only ever one `bitmapBackgr
 "cache" in `BackgroundCache` refers to holding the currently-active background in a member variable
 for repeated per-frame drawing, not to a multi-entry lookup cache.
 
-This lazy, single-slot loading pattern is also why the sprite-atlas visible/invisible split noted in
-`PLAN.md` matters here directly: the visible per-region art always comes from this one
-`Pixmap::BackgroundCache(name)` call loading a whole pre-rendered `decorNNN.png` image, while the
-numeric `icon` values inside `Decor::m_decor[][]` (populated from the level file's `Decor:` block)
-are a separate, purely-gameplay classification layer that never indexes into this background image
-at all — see [Chapter 16](../part04-decor-simulation/ch16-tile-map.md) and
-[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) for the full argument.
+This lazy, single-slot loading pattern is also where the background/foreground split documented in
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) matters directly: the one
+`bitmapBackground` texture loaded here by `Pixmap::BackgroundCache(name)` supplies only the
+back-most parallax scenery (distant terrain, sky) for a level's region. It is not where the level's
+foreground tiles come from — those are drawn separately, per tile, from the `icons/object-m.png`
+atlas loaded in `LoadContent()` above, using the numeric `icon` values stored in
+`Decor::m_decor[][]` (populated from the level file's `Decor:` block) directly as sprite indices
+for the large majority of static tiles, with a small set of animated/hazard icons remapped through
+a per-icon frame table first. See [Chapter 16](../part04-decor-simulation/ch16-tile-map.md) and
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) for the full argument, which
+corrects an earlier, unverified hypothesis in this project's own `PLAN.md` that the tile-grid icon
+numbers formed a purely invisible layer never contributing to visible art.
 
 ## Sounds: `Sound::LoadContent()`
 

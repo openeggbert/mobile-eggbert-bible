@@ -224,36 +224,46 @@ the sample), truncated to its non-empty tail:
 ...,10,10,10,10,10,,10,10,10,10,10,10,10,,,,10,163,10,162,10,159,10,309,10,412,10,413,10,10,10,10,10,10,
 ```
 
-Annotating a few of the real icon values that appear in this row, cross-referencing the raw
-`Is*()` predicates read directly from `Decor.cpp` (there is no `ch26` tile-and-icon catalog chapter
-committed at the time this appendix was written, so predicates are cited directly rather than via
-that catalog):
+Annotating a few of the real icon values that appear in this row, cross-referencing
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)'s systematic catalog of every
+`Decor::Is*` predicate (built by reading each one directly in `Decor.cpp`):
 
 | Icon value | What the code says about it | Citation |
 |---|---|---|
-| `10` | Classified via `Tables::table_decor_quart[icon*16 .. icon*16+15]` inside `Decor::IsBlocIcon`/`Decor::IsPassIcon` — whether all 16 of its per-quarter-cell lookup entries are zero (passable) or non-zero (blocking) determines collision behaviour; `10` recurs constantly across every sampled level as filler terrain, consistent with a common solid-ground classification | `Decor.cpp:7503-7540` |
-| `163`, `162`, `159`, `309`, `412`, `413` | Not matched by any of the specific numeric checks read for this appendix (`IsLave`'s `68`, `IsPiege`'s `373`, door range `174`–`182`, gold's `183`); their gameplay classification, like `10`'s, ultimately flows through the same `table_decor_quart`/`IsBlocIcon`/`IsPassIcon` machinery and the many other named `Is*()` predicates in `Decor.cpp` not exhaustively cross-referenced here | `Decor.cpp:7503-7540` (mechanism); full per-icon enumeration is [Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)'s job once written |
+| `10` | Not matched by any of [Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)'s ~24 icon-classifying predicates by literal value; its solidity is resolved generically by `Decor::IsBlocIcon`/`Decor::IsPassIcon` consulting `Tables::table_decor_quart[icon*16 .. icon*16+15]` (16 quarter-tile sub-cells per icon) — `10` recurs constantly across every sampled level as filler terrain, consistent with an ordinary solid-ground tile. Because it falls outside the hazard/mechanism exclusion list `Decor::Build()` checks (`68`,`91`,`92`,`110`–`137`,`305`,`317`,`324`,`373`,`378`,`384`,`385`,`404`,`410`), it is also drawn as a **real, static sprite**: `Pixmap::QuickIcon(PixmapChannel::Object, 10, pos)`, using the icon value itself as the index into `object-m.png`. | `Decor.cpp:7503-7540` (collision); `Decor.cpp:935-966` (default draw case) |
+| `163`, `162`, `159`, `309`, `412`, `413` | None of these match a hazard/mechanism predicate's literal trigger value in [Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)'s master table either — `309` is the one partial exception, matched by `Decor::IsWorld` as one of the two icons hard-mapped to world index `9` (`case 309: case 310: return 9;`), used only on the hub level, not in an ordinary stage like `world001`. Like `10`, all of these fall outside `Build()`'s animated-icon exclusion list, so each is drawn as its own literal sprite index into `object-m.png` — the raw numbers in this row of the file are simultaneously gameplay-inert filler *and* the literal, distinct sprite each one displays as. | `Decor.cpp:7079-7122` (`IsWorld`); `Decor.cpp:935-966` (default draw case) |
 
-Two icon values *are* precisely documented elsewhere in this codebase and are worth calling out
-even though they do not happen to appear in this particular nine-cell excerpt: icon `68` is lava
-(`Decor::IsLave`, `Decor.cpp:7195-7203`, checked via `m_decor[pos.X/64][pos.Y/64].icon == 68`), and
-icon `373` is a trap (`Decor::IsPiege`, `Decor.cpp:7205-7218`, `icon == 373`). Icon `183` is the
-game's gold/treasure marker, checked directly by `Decor::SearchGold` (`Decor.cpp:11492`,
-`m_decor[num2][num].icon == 183`); door signs occupy the contiguous range `174`–`181` (door number
-= `icon - 174 + 1`), with the physical door tile itself at icon `182`
-(`Decor::SearchDoor`, `Decor.cpp:11446-11448`).
+Two icon values from elsewhere in the same file's `Decor:` block (not this nine-cell excerpt, but
+present in other rows of `world001.txt`) are precisely documented, hazard-classifying members of
+[Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)'s catalog: icon `68` is
+instant-lethal lava (`Decor::IsLave`, `Decor.cpp:7195-7203`, `m_decor[pos.X/64][pos.Y/64].icon ==
+68`) — and, unlike the filler icons above, `68` is deliberately *excluded* from `Build()`'s default
+static-sprite draw case and instead remapped every frame through `Tables::table_decor_lave` to
+animate; icon `373` is a spike trap (`Decor::IsPiege`, `Decor.cpp:7205-7218`, `icon == 373`), also
+excluded from the static path. Icon `183` is the game's gold/treasure marker, checked directly by
+`Decor::SearchGold` (`Decor.cpp:11492`, `m_decor[num2][num].icon == 183`); door signs occupy the
+contiguous range `174`–`181` (door number = `icon - 174 + 1`), with the physical door tile itself at
+icon `182` (`Decor::SearchDoor`, `Decor.cpp:11446-11448`) — none of `183`, `174`–`181`, or `182` are
+in `Build()`'s exclusion list either, so each also draws as its own ordinary static sprite in
+addition to whatever `Decor.cpp` logic keys off its value.
 
-This is the concrete evidence behind the structural claim (`PLAN.md`, confirmed while researching
-this appendix and [Chapter 44](../part08-data-persistence-content/ch44-worlds-level-file-format.md))
-that `m_decor[][]`'s numeric icon values are an **invisible gameplay-classification layer**, wholly
-separate from the visible per-region background art loaded via `Pixmap::BackgroundCache` — nothing
-in this appendix's icon-lookup chain (`IsLave`, `IsPiege`, `IsBlocIcon`/`IsPassIcon` via
-`table_decor_quart`, the door-range checks, `SearchGold`) ever calls
-`Pixmap::DrawIcon(PixmapChannel::Element, icon, ...)` with these raw tile-grid values to draw
-visible sprite art; `MAXQUART = 441` (`Decor.hpp:187`) is itself larger than the `Element` channel's
-own 290-icon atlas capacity (`element.png`, 600×1740 px at a 60×60 grid — see `PLAN.md`'s sprite
-atlas table), which would be a contradiction if these numbers were meant to directly index a visible
-sprite sheet.
+**A corrected structural note.** An earlier draft of this project's own `PLAN.md` recorded a
+tentative hypothesis, pending verification, that `m_decor[][]`'s numeric icon values formed a
+purely invisible gameplay-classification layer, entirely separate from the visible per-region
+background art loaded via `Pixmap::BackgroundCache`. [Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md)
+verified this claim directly against `Decor::Build()`'s actual render loop and found it only half
+true: the pre-rendered `Content/backgrounds/decorNNN.png` image genuinely supplies *only* the
+back-most parallax scenery, never anything indexed by a tile's own icon number — but the tile grid
+itself is not invisible at all. For the large majority of static icons (everything not in
+`Build()`'s short, enumerable animated/hazard exclusion list quoted above), the icon value doubles
+as a literal index into `PixmapChannel::Object` (`object-m.png`), drawn via
+`Pixmap::QuickIcon(PixmapChannel::Object, icon, pos)` (`Decor.cpp:935-966`, `Decor.cpp:1023-1030`).
+`Decor::MAXQUART = 441` (`Decor.hpp:187`, the size of the `table_decor_quart` collision table) sits
+suspiciously close to `object-m.png`'s own atlas capacity at its documented 64×64 grid with a 1px
+gap (`1301 / 65 = 20` columns × `1431 / 65 = 22` rows = 440 icons — see `PLAN.md`'s sprite-atlas
+table) — consistent with, not contradicting, static tile icons indexing directly into that specific
+atlas. One raw integer in a `Decor:` row is therefore doing double duty: a `Decor.cpp` collision/
+hazard classification key, *and* (for most values) the literal sprite index rendered on screen.
 
 ## See also
 

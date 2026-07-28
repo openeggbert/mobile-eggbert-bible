@@ -101,6 +101,72 @@ void Game1::ContinueMission()
     {
 ```
 
+## The mission numbering scheme, confirmed further: `MissionBack` and the pause menu
+
+Two more `Game1` call sites make the `world * 10 + level` numbering scheme from the previous
+section even more concrete, and are worth reading because they show `mission % 10 == 0` is itself a
+meaningful value — "the world's own hub-return landing spot" — not just an implementation detail of
+how `m_term` gets computed.
+
+`MissionBack()` — invoked when the player presses the pause menu's "Back" button — decides where to
+return to using exactly this test:
+
+*From `Game1.cpp:450-460`:*
+
+```cpp
+void Game1::MissionBack()
+{
+    int num = mission;
+    if (num == 1)
+    {
+        SetPhase(Def::Phase::Init);
+        return;
+    }
+    num = ((num % 10 == 0) ? 1 : (num / 10 * 10));
+    SetPhase(Def::Phase::Play, num);
+}
+```
+
+Mission `1` (the world-select hub) backs out to the main menu (`Def::Phase::Init`) entirely.
+Anything else backs out to either mission `1` (if the current mission is itself already a
+`% 10 == 0` "world landing spot", i.e. `10`, `20`, `30`, …) or to the current world's own landing
+spot (`mission / 10 * 10` — the same truncation used by `Decor::OpenDoorsWin()`'s ordinary-win
+branch, see above). In other words: an ordinary numbered level (say, mission `23`) backs out one
+step, to its world's landing page (`20`); the landing page itself backs out two steps, all the way
+to the top-level hub (`1`).
+
+The pause menu's own button visibility logic reads the same two facts — `mission == 1` and
+`mission % 10 == 0` — to decide which buttons make sense to show at all:
+
+*From `Game1.cpp:892-904`:*
+
+```cpp
+if (phase == Def::Phase::Pause)
+{
+    DrawTextUnderButton(Def::ButtonGlyph::PauseMenu, MyResource::TX_BUTTON_MENU);
+    if (mission != 1)
+    {
+        DrawTextUnderButton(Def::ButtonGlyph::PauseBack, MyResource::TX_BUTTON_BACK);
+    }
+    DrawTextUnderButton(Def::ButtonGlyph::PauseSetup, MyResource::TX_BUTTON_SETUP);
+    if (mission != 1 && mission % 10 != 0)
+    {
+        DrawTextUnderButton(Def::ButtonGlyph::PauseRestart, MyResource::TX_BUTTON_RESTART);
+    }
+    DrawTextUnderButton(Def::ButtonGlyph::PauseContinue, MyResource::TX_BUTTON_CONTINUE);
+}
+```
+
+"Back" is hidden only on the hub itself (there is nowhere further back to go). "Restart" is hidden
+both on the hub *and* on any world-landing-spot mission (`mission % 10 == 0`) — restarting a hub or
+a landing page is meaningless because neither one is a playable level with its own start position
+and hazards; only an actual numbered level (`mission % 10` in `1..9`, following the `StartMission`
+gating seen earlier) can be meaningfully restarted. This is the clearest evidence in the whole
+codebase that mission numbers ending in a multiple of 10 are architecturally distinct from ordinary
+levels — they are hub/landing nodes in the mission graph, not gameplay content — confirming from a
+completely independent angle (menu logic, not win-condition logic) the same scheme
+`Decor::OpenDoorsWin()`'s `m_term = m_mission / 10 * 10` computation implied.
+
 ## `m_buildOfficialMissions`: declared, set once, read never
 
 `SetBuildOfficialMissions(bool)` is a private `Decor` method mentioned by name in this book's
