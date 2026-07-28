@@ -110,6 +110,16 @@ def crop_icon(atlas_img: Image.Image, channel: str, icon: int,
     cfg = ATLAS[channel]
     grid_w, grid_h = cfg["grid"]
     gap = cfg["gap"]
+    if icon == -1:
+        # Pixmap::DrawIcon (Pixmap.cpp:516-519): `if (icon == -1) return;` --
+        # -1 is a real, deliberate "draw nothing this frame" sentinel that
+        # does appear inside real table_blupi frame lists (e.g. the
+        # Clear2/Clear3/Clear5-8 and Teleporte sequences, where Blupi
+        # genuinely becomes invisible for part of the animation). Represent
+        # it as a fully transparent placeholder cell of the channel's normal
+        # icon size, rather than treating it as a crop error.
+        w, h = cfg["icon"] if cfg["icon"] else (128, 128)
+        return Image.new("RGBA", (w, h), (0, 0, 0, 0))
     if channel == "Explosion":
         assert explo_size_table is not None
         height = explo_size_table[icon]
@@ -283,7 +293,8 @@ def generate_blupi_actions(me_root: Path, out_dir: Path, tables: Dict[str, List[
             channel = blupi_channel_for_frame(name, icon)
             channels_used.add(channel)
             crop = crop_icon(atlas_imgs[channel], channel, icon)
-            frames.append((crop, f"icon {icon} / f{fi}"))
+            cap = f"icon {icon} / f{fi}" if icon != -1 else f"(invisible) / f{fi}"
+            frames.append((crop, cap))
 
         threshold_note = f", freezes at frame {rec['threshold']} past that phase" if rec["threshold"] else ""
         subtitle = (f"BlupiAction::{name} (raw={raw})  |  {rec['frame_count']} frames"

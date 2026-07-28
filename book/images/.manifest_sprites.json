@@ -1,0 +1,832 @@
+[
+  {
+    "file": "blupi-action-hide.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 0), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Hide (raw id 35): 9 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 12), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Stop (raw id 1): 330 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 345), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::March (raw id 2): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-march.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 354), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopMarch (raw id 60): 3 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 360), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Turn (raw id 3): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-jump.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 369), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Jump (raw id 4): 3 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-air.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 375), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Air (raw id 5): 5 animation frame(s), freezes at frame 4 past that phase, channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-air.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 383), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnAir (raw id 59): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-jump.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 392), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopJump (raw id 61): 5 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-jumph.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 400), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopJumph (raw id 62): 2 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-down.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 405), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Down (raw id 6): 3 animation frame(s), freezes at frame 2 past that phase, channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-up.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 411), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Up (raw id 7): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-vertigo.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 415), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Vertigo (raw id 8): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-recede.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 426), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Recede (raw id 9): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-advance.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 435), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Advance (raw id 10): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-win.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 444), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Win (raw id 13): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-take-dynamite.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 453), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TakeDynamite (raw id 86): 18 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-put-dynamite.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 474), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::PutDynamite (raw id 87): 26 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-clear1.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 503), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear1 (raw id 11): 70 animation frame(s), channel(s) Element."
+  },
+  {
+    "file": "blupi-action-clear2.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 576), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear2 (raw id 75): 1 animation frame(s), channel(s) Element."
+  },
+  {
+    "file": "blupi-action-clear3.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 580), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear3 (raw id 76): 70 animation frame(s), channel(s) Element."
+  },
+  {
+    "file": "blupi-action-clear4.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 683), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear4 (raw id 77): 110 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-clear5.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 796), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear5 (raw id 78): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-clear6.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 800), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear6 (raw id 79): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-clear7.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 804), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear7 (raw id 80): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-clear8.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 808), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Clear8 (raw id 81): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-push.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 812), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Push (raw id 14): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-pop.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 821), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Pop (raw id 29): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-pop.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 830), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopPop (raw id 28): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-helico.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 839), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopHelico (raw id 15): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-helico.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 843), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchHelico (raw id 16): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-helico.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 854), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnHelico (raw id 17): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-over.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 867), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopOver (raw id 67): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-over.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 871), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchOver (raw id 68): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-over.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 886), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnOver (raw id 69): 7 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-nage.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 896), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopNage (raw id 18): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-nage.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 909), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchNage (raw id 19): 14 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-nage.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 926), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnNage (raw id 20): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-surf.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 939), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopSurf (raw id 21): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-surf.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 954), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchSurf (raw id 22): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-surf.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 969), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnSurf (raw id 23): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-drown.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 982), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Drown (raw id 24): 90 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-jeep.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1075), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopJeep (raw id 25): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-jeep.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1086), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchJeep (raw id 26): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-jeep.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1097), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnJeep (raw id 27): 7 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-bye.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1107), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Bye (raw id 30): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-suspend.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1122), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopSuspend (raw id 31): 328 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-suspend.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1453), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchSuspend (raw id 32): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-suspend.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1468), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnSuspend (raw id 33): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-jump-suspend.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1481), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::JumpSuspend (raw id 34): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-jump-aie.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1494), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::JumpAie (raw id 36): 32 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1529), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopSkate (raw id 37): 140 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-slowdown-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1672), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::SlowdownSkate (raw id 85): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1676), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchSkate (raw id 38): 96 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1775), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnSkate (raw id 39): 14 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-jump-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1792), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::JumpSkate (raw id 40): 3 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-air-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1798), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::AirSkate (raw id 41): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-take-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1809), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TakeSkate (raw id 42): 20 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-depose-skate.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1832), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::DeposeSkate (raw id 43): 20 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf1a.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1855), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf1a (raw id 44): 29 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf1b.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1887), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf1b (raw id 45): 29 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf2.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1919), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf2 (raw id 46): 32 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf3.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1954), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf3 (raw id 47): 34 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf4.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 1991), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf4 (raw id 48): 40 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-ouf5.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2034), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Ouf5 (raw id 65): 44 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-sucette.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2081), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Sucette (raw id 49): 32 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-tank.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2116), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopTank (raw id 50): 64 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-tank.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2183), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchTank (raw id 51): 8 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-turn-tank.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2194), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::TurnTank (raw id 52): 12 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-fire-tank.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2209), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::FireTank (raw id 53): 6 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-glu.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2218), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Glu (raw id 54): 25 animation frame(s), channel(s) Element."
+  },
+  {
+    "file": "blupi-action-drink.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2246), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Drink (raw id 55): 4 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-charge.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2253), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Charge (raw id 56): 64 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-electro.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2320), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Electro (raw id 57): 90 animation frame(s), channel(s) Blupi/Element."
+  },
+  {
+    "file": "blupi-action-switch.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2413), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Switch (raw id 82): 10 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-helico-glu.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2426), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::HelicoGlu (raw id 58): 14 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-balloon.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2443), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Balloon (raw id 66): 16 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-stop-ecrase.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2462), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::StopEcrase (raw id 72): 1 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-march-ecrase.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2466), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::MarchEcrase (raw id 73): 24 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-teleporte.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2493), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Teleporte (raw id 74): 128 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-mockery.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2624), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Mockery (raw id 63): 92 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-mockeryi.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2719), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Mockeryi (raw id 64): 104 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-mockeryp.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2826), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Mockeryp (raw id 83): 60 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "blupi-action-non.png",
+    "source": "Tables::table_blupi (Tables.cpp:116, offset 2889), blupi.png/element.png via Pixmap::GetSrcRectangle",
+    "desc": "BlupiAction::Non (raw id 84): 18 animation frame(s), channel(s) Blupi."
+  },
+  {
+    "file": "(none \u2014 table_blupi format notes)",
+    "source": "Tables::table_blupi (Tables.cpp) / Decor::BlupiSearchIcon (Decor.cpp:2123-2452)",
+    "desc": "table_blupi contains 15 degenerate/filler record(s) whose raw action id does not correspond to any real BlupiAction (all observed as a (-1,-1,-1)-style padding stretch between the records for raw actions 76 and 77); these are skipped, not rendered. BlupiAction values with no table_blupi record at all: Advanceq, None, Recedeq, Set. blupi1.png is never referenced by any table_blupi-driven action -- see object-038-electric-arc.png for the one real use of blupi1.png in this catalog."
+  },
+  {
+    "file": "object-002-patrol-enemy-a.png",
+    "source": "inline formula in Decor::MoveObjectStepIcon (icon = 12 + phase % 9)",
+    "desc": "ObjectType2 (Standard patrolling enemy): 9 frame(s), channel Element."
+  },
+  {
+    "file": "object-003-patrol-enemy-b.png",
+    "source": "inline formula in Decor::MoveObjectStepIcon (icon = 48 + phase % 9)",
+    "desc": "ObjectType3 (Patrolling enemy variant): 9 frame(s), channel Element."
+  },
+  {
+    "file": "object-016-spider.png",
+    "source": "inline formula in Decor::MoveObjectStepIcon (icon = 69 + phase % 9)",
+    "desc": "ObjectType16 (Spider/arthropod enemy): 9 frame(s), channel Element."
+  },
+  {
+    "file": "object-006-life-egg.png",
+    "source": "inline formula in Decor::MoveObjectStepIcon (icon = 21 + phase % 8)",
+    "desc": "ObjectType6 (Extra-life egg collectible): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-007-exit-goal.png",
+    "source": "inline formula in Decor::MoveObjectStepIcon (icon = 29 + phase % 8)",
+    "desc": "ObjectType7 (Level-exit goal marker): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-021-secret-exit-key.png",
+    "source": "Tables::table_cle (Tables.cpp)",
+    "desc": "ObjectType21 (Secret-level exit goal marker): 12 frame(s), channel Element."
+  },
+  {
+    "file": "object-049-key1.png",
+    "source": "Tables::table_cle1 (Tables.cpp)",
+    "desc": "ObjectType49 (Key 1 collectible): 12 frame(s), channel Element."
+  },
+  {
+    "file": "object-050-key2.png",
+    "source": "Tables::table_cle2 (Tables.cpp)",
+    "desc": "ObjectType50 (Key 2 collectible): 12 frame(s), channel Element."
+  },
+  {
+    "file": "object-051-key3.png",
+    "source": "Tables::table_cle3 (Tables.cpp)",
+    "desc": "ObjectType51 (Key 3 collectible): 12 frame(s), channel Element."
+  },
+  {
+    "file": "object-024-skate-pickup.png",
+    "source": "Tables::table_skate (Tables.cpp)",
+    "desc": "ObjectType24 (Skate collectible): 34 frame(s), channel Element."
+  },
+  {
+    "file": "object-025-shield-pickup.png",
+    "source": "Tables::table_shield (Tables.cpp)",
+    "desc": "ObjectType25 (Shield power-up): 16 frame(s), channel Element."
+  },
+  {
+    "file": "object-026-suction-power.png",
+    "source": "Tables::table_power (Tables.cpp)",
+    "desc": "ObjectType26 (Suction-cup power-up): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-040-invert-pickup.png",
+    "source": "Tables::table_invert (Tables.cpp)",
+    "desc": "ObjectType40 (Mirror/invert power-up): 20 frame(s), channel Element."
+  },
+  {
+    "file": "object-031-charge-cloud.png",
+    "source": "Tables::table_charge (Tables.cpp)",
+    "desc": "ObjectType31 (Charge/cloud power-up): 6 frame(s), channel Object."
+  },
+  {
+    "file": "object-027-magic-track.png",
+    "source": "Tables::table_magictrack (Tables.cpp)",
+    "desc": "ObjectType27 (Magic track sparkle trail): 24 frame(s), channel Element."
+  },
+  {
+    "file": "object-057-shield-track.png",
+    "source": "Tables::table_shieldtrack (Tables.cpp)",
+    "desc": "ObjectType57 (Shield trail sparkle): 20 frame(s), channel Element."
+  },
+  {
+    "file": "object-039-treasure-track.png",
+    "source": "Tables::table_tresortrack (Tables.cpp)",
+    "desc": "ObjectType39 (Collectible sparkle effect): 11 frame(s), channel Element."
+  },
+  {
+    "file": "object-052-bridge-build.png",
+    "source": "Tables::table_bridge (Tables.cpp)",
+    "desc": "ObjectType52 (Bridge construction animation): 157 frame(s), channel Object."
+  },
+  {
+    "file": "object-036-pollution-puff.png",
+    "source": "Tables::table_pollution (Tables.cpp)",
+    "desc": "ObjectType36 (Pollution/cloud puff effect): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-041-invert-start.png",
+    "source": "Tables::table_invertstart (Tables.cpp)",
+    "desc": "ObjectType41 (Invert-start particle burst): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-042-invert-stop.png",
+    "source": "Tables::table_invertstop (Tables.cpp)",
+    "desc": "ObjectType42 (Invert-stop particle burst): 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-014-water-plouf.png",
+    "source": "Tables::table_plouf (Tables.cpp)",
+    "desc": "ObjectType14 (Water plouf splash): 7 frame(s), channel Object."
+  },
+  {
+    "file": "object-035-small-plouf.png",
+    "source": "Tables::table_tiplouf (Tables.cpp)",
+    "desc": "ObjectType35 (Small plouf splash): 3 frame(s), channel Object. NOTE: Decor.cpp:8619 indexes this table modulo 7, but Tables.cpp declares table_tiplouf with only 3 real elements ({99,100,244} -> actually {244,99,244}); this sheet renders exactly the 3 real elements and does not fabricate frames 3-6 to fill the apparent gap -- a genuine array-bounds inconsistency in the original engine, reported here rather than silently patched."
+  },
+  {
+    "file": "object-015-water-bubble.png",
+    "source": "Tables::table_blup (Tables.cpp)",
+    "desc": "ObjectType15 (Water bubble / blup): 20 frame(s), channel Object."
+  },
+  {
+    "file": "object-034-goo-glue.png",
+    "source": "Tables::table_glu (Tables.cpp)",
+    "desc": "ObjectType34 (Goo/glue particle): 25 frame(s), channel Element."
+  },
+  {
+    "file": "object-037-clear-effect.png",
+    "source": "Tables::table_clear (Tables.cpp)",
+    "desc": "ObjectType37 (Clear/dissipate visual effect): 70 frame(s), channel Element."
+  },
+  {
+    "file": "object-056-dynamite-fuse.png",
+    "source": "Tables::table_dynamitef (Tables.cpp)",
+    "desc": "ObjectType56 (Dynamite fuse animation): 100 frame(s), channel Element."
+  },
+  {
+    "file": "object-096-follow-enemy-1.png",
+    "source": "Tables::table_follow1 (Tables.cpp)",
+    "desc": "ObjectType96 (Follow enemy variant 1): 26 frame(s), channel Element."
+  },
+  {
+    "file": "object-097-follow-enemy-2.png",
+    "source": "Tables::table_follow2 (Tables.cpp)",
+    "desc": "ObjectType97 (Follow enemy variant 2): 5 frame(s), channel Element."
+  },
+  {
+    "file": "object-005-treasure.png",
+    "source": "inline ping-pong formula in Decor::MoveObjectStepIcon (Decor.cpp:8297-8308)",
+    "desc": "ObjectType5 (treasure collectible): 22-frame forward/backward sweep over icons 0-10, channel Element."
+  },
+  {
+    "file": "object-038-electric-arc.png",
+    "source": "Tables::table_electro (Tables.cpp), blupi1.png for frames 0-29 / element.png for frames 30-89",
+    "desc": "ObjectType38 (electric arc effect): 90 frames, channel switches from Blupi1_12 to Element partway through the sequence (Decor.cpp:8988-9006) -- the one BlupiAction/ObjectType sequence in this catalog that genuinely uses blupi1.png."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 68",
+    "desc": "ObjectType13 (Helicopter pick-up) draws a single static icon (68) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 208",
+    "desc": "ObjectType46 (Balloon vehicle pick-up) draws a single static icon (208) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 89",
+    "desc": "ObjectType19 (Jeep vehicle pick-up) draws a single static icon (89) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 167",
+    "desc": "ObjectType28 (Tank vehicle pick-up) draws a single static icon (167) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 176",
+    "desc": "ObjectType23 (Fired projectile) draws a single static icon (176) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 177",
+    "desc": "ObjectType29 (Bullet ammo pack) draws a single static icon (177) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "(none \u2014 static icon, not an animation)",
+    "source": "inline constant in Decor::MoveObjectStepIcon, channel Element, icon 178",
+    "desc": "ObjectType30 (Drink power-up) draws a single static icon (178) every frame; not included as a contact sheet because there is no sequence to show."
+  },
+  {
+    "file": "object-004-bulldozer-left.png",
+    "source": "Tables::table_bulldozer_left (Tables.cpp)",
+    "desc": "ObjectType4 (Bulldozer enemy), 'left' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-004-bulldozer-right.png",
+    "source": "Tables::table_bulldozer_right (Tables.cpp)",
+    "desc": "ObjectType4 (Bulldozer enemy), 'right' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-004-bulldozer-turn-to-left.png",
+    "source": "Tables::table_bulldozer_turn2l (Tables.cpp)",
+    "desc": "ObjectType4 (Bulldozer enemy), 'turn-to-left' sub-animation: 22 frame(s), channel Element."
+  },
+  {
+    "file": "object-004-bulldozer-turn-to-right.png",
+    "source": "Tables::table_bulldozer_turn2r (Tables.cpp)",
+    "desc": "ObjectType4 (Bulldozer enemy), 'turn-to-right' sub-animation: 22 frame(s), channel Element."
+  },
+  {
+    "file": "object-017-fish-left.png",
+    "source": "Tables::table_poisson_left (Tables.cpp)",
+    "desc": "ObjectType17 (Fish enemy), 'left' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-017-fish-right.png",
+    "source": "Tables::table_poisson_right (Tables.cpp)",
+    "desc": "ObjectType17 (Fish enemy), 'right' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-017-fish-turn-to-left.png",
+    "source": "Tables::table_poisson_turn2l (Tables.cpp)",
+    "desc": "ObjectType17 (Fish enemy), 'turn-to-left' sub-animation: 48 frame(s), channel Element."
+  },
+  {
+    "file": "object-017-fish-turn-to-right.png",
+    "source": "Tables::table_poisson_turn2r (Tables.cpp)",
+    "desc": "ObjectType17 (Fish enemy), 'turn-to-right' sub-animation: 48 frame(s), channel Element."
+  },
+  {
+    "file": "object-020-bird-left.png",
+    "source": "Tables::table_oiseau_left (Tables.cpp)",
+    "desc": "ObjectType20 (Bird enemy), 'left' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-020-bird-right.png",
+    "source": "Tables::table_oiseau_right (Tables.cpp)",
+    "desc": "ObjectType20 (Bird enemy), 'right' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-020-bird-turn-to-left.png",
+    "source": "Tables::table_oiseau_turn2l (Tables.cpp)",
+    "desc": "ObjectType20 (Bird enemy), 'turn-to-left' sub-animation: 10 frame(s), channel Element."
+  },
+  {
+    "file": "object-020-bird-turn-to-right.png",
+    "source": "Tables::table_oiseau_turn2r (Tables.cpp)",
+    "desc": "ObjectType20 (Bird enemy), 'turn-to-right' sub-animation: 10 frame(s), channel Element."
+  },
+  {
+    "file": "object-044-wasp-left.png",
+    "source": "Tables::table_guepe_left (Tables.cpp)",
+    "desc": "ObjectType44 (Wasp/bee enemy), 'left' sub-animation: 6 frame(s), channel Element."
+  },
+  {
+    "file": "object-044-wasp-right.png",
+    "source": "Tables::table_guepe_right (Tables.cpp)",
+    "desc": "ObjectType44 (Wasp/bee enemy), 'right' sub-animation: 6 frame(s), channel Element."
+  },
+  {
+    "file": "object-044-wasp-turn-to-left.png",
+    "source": "Tables::table_guepe_turn2l (Tables.cpp)",
+    "desc": "ObjectType44 (Wasp/bee enemy), 'turn-to-left' sub-animation: 5 frame(s), channel Element."
+  },
+  {
+    "file": "object-044-wasp-turn-to-right.png",
+    "source": "Tables::table_guepe_turn2r (Tables.cpp)",
+    "desc": "ObjectType44 (Wasp/bee enemy), 'turn-to-right' sub-animation: 5 frame(s), channel Element."
+  },
+  {
+    "file": "object-054-large-creature-left.png",
+    "source": "Tables::table_creature_left (Tables.cpp)",
+    "desc": "ObjectType54 (Large creature enemy), 'left' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-054-large-creature-right.png",
+    "source": "Tables::table_creature_right (Tables.cpp)",
+    "desc": "ObjectType54 (Large creature enemy), 'right' sub-animation: 8 frame(s), channel Element."
+  },
+  {
+    "file": "object-054-large-creature-turn-to-left-turn-to-right.png",
+    "source": "Tables::table_creature_turn2 (Tables.cpp)",
+    "desc": "ObjectType54 (Large creature enemy), 'turn-to-left / turn-to-right' sub-animation (single table shared by both turn directions): 152 frame(s), channel Element."
+  },
+  {
+    "file": "object-032-blupih-clone-left.png",
+    "source": "Tables::table_blupih_left (Tables.cpp)",
+    "desc": "ObjectType32 (Blupi-hostile clone \"blupih\" (channel inferred, see notes)), 'left' sub-animation: 8 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-032-blupih-clone-right.png",
+    "source": "Tables::table_blupih_right (Tables.cpp)",
+    "desc": "ObjectType32 (Blupi-hostile clone \"blupih\" (channel inferred, see notes)), 'right' sub-animation: 8 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-032-blupih-clone-turn-to-left.png",
+    "source": "Tables::table_blupih_turn2l (Tables.cpp)",
+    "desc": "ObjectType32 (Blupi-hostile clone \"blupih\" (channel inferred, see notes)), 'turn-to-left' sub-animation: 26 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-032-blupih-clone-turn-to-right.png",
+    "source": "Tables::table_blupih_turn2r (Tables.cpp)",
+    "desc": "ObjectType32 (Blupi-hostile clone \"blupih\" (channel inferred, see notes)), 'turn-to-right' sub-animation: 26 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-033-blupit-clone-left.png",
+    "source": "Tables::table_blupit_left (Tables.cpp)",
+    "desc": "ObjectType33 (Blupi-hostile clone \"blupit\" (channel inferred, see notes)), 'left' sub-animation: 8 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-033-blupit-clone-right.png",
+    "source": "Tables::table_blupit_right (Tables.cpp)",
+    "desc": "ObjectType33 (Blupi-hostile clone \"blupit\" (channel inferred, see notes)), 'right' sub-animation: 8 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-033-blupit-clone-turn-to-left.png",
+    "source": "Tables::table_blupit_turn2l (Tables.cpp)",
+    "desc": "ObjectType33 (Blupi-hostile clone \"blupit\" (channel inferred, see notes)), 'turn-to-left' sub-animation: 24 frame(s), channel Blupi."
+  },
+  {
+    "file": "object-033-blupit-clone-turn-to-right.png",
+    "source": "Tables::table_blupit_turn2r (Tables.cpp)",
+    "desc": "ObjectType33 (Blupi-hostile clone \"blupit\" (channel inferred, see notes)), 'turn-to-right' sub-animation: 24 frame(s), channel Blupi."
+  },
+  {
+    "file": "explosion-table_explo1.png",
+    "source": "Tables::table_explo1 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo1: 39 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo2.png",
+    "source": "Tables::table_explo2 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo2: 20 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo3.png",
+    "source": "Tables::table_explo3 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo3: 20 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo4.png",
+    "source": "Tables::table_explo4 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo4: 9 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo5.png",
+    "source": "Tables::table_explo5 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo5: 12 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo6.png",
+    "source": "Tables::table_explo6 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo6: 6 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo7.png",
+    "source": "Tables::table_explo7 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo7: 128 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "explosion-table_explo8.png",
+    "source": "Tables::table_explo8 + Tables::table_explo_size (Tables.cpp), explo.png",
+    "desc": "Explosion/effect sequence table_explo8: 5 frame(s), each cropped at its own real per-icon size from table_explo_size."
+  },
+  {
+    "file": "atlas-blupi-grid.png",
+    "source": "Content/icons/blupi.png (real atlas, 600x2040), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for blupi.png with a 60x60 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-blupi1-grid.png",
+    "source": "Content/icons/blupi1.png (real atlas, 600x2040), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for blupi1.png with a 60x60 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-object-m-grid.png",
+    "source": "Content/icons/object-m.png (real atlas, 1301x1431), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for object-m.png with a 64x64 (gap 1px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-element-grid.png",
+    "source": "Content/icons/element.png (real atlas, 600x1740), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for element.png with a 60x60 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-explo-grid.png",
+    "source": "Content/icons/explo.png (real atlas, 1440x1440), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for explo.png with a 144x144 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at. Note: explo.png's overlay shows the uniform 144x144 base grid; actual per-icon crop width/height varies per Tables::table_explo_size and can differ from this base cell (see the explosion-table_explo*.png contact sheets for real per-frame crop sizes)."
+  },
+  {
+    "file": "atlas-button-grid.png",
+    "source": "Content/icons/button.png (real atlas, 240x1040), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for button.png with a 40x40 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-pad-grid.png",
+    "source": "Content/icons/pad.png (real atlas, 1120x420), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for pad.png with a 140x140 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  },
+  {
+    "file": "atlas-text-grid.png",
+    "source": "Content/icons/text.png (real atlas, 512x256), grid overlay from Pixmap::DrawIcon's per-channel switch (Pixmap.cpp:550-648)",
+    "desc": "Full real atlas for text.png with a 32x32 (gap 0px) grid overlay at the exact cell boundaries Pixmap::GetSrcRectangle slices at."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "file": "level-map-world001.png",
+    "source": "worlds/world001.txt (real level data) + Decor::Is*() predicates + Tables::table_decor_quart (Tables.cpp)",
+    "desc": "Reconstructed collision/classification map of world001.txt's 100x100 Decor grid (18 distinct icon values present, range -1..413). Not a screenshot."
+  },
+  {
+    "file": "level-map-world055.png",
+    "source": "worlds/world055.txt (real level data) + Decor::Is*() predicates + Tables::table_decor_quart (Tables.cpp)",
+    "desc": "Reconstructed collision/classification map of world055.txt's 100x100 Decor grid (22 distinct icon values present, range -1..427). Not a screenshot."
+  },
+  {
+    "file": "level-map-world120.png",
+    "source": "worlds/world120.txt (real level data) + Decor::Is*() predicates + Tables::table_decor_quart (Tables.cpp)",
+    "desc": "Reconstructed collision/classification map of world120.txt's 100x100 Decor grid (16 distinct icon values present, range -1..283). Not a screenshot."
+  }
+]
