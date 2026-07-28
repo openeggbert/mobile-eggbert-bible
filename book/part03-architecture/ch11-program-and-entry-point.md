@@ -1,7 +1,5 @@
 # Chapter 11: Program and Entry Point
 
-## Overview
-
 Every C++ program needs exactly one `main()`. For `mobile-eggbert`, that function lives in a single
 83-line file, `src/WindowsPhoneSpeedyBlupi/Program.cpp`, and its job is deliberately narrow:
 construct the top-level `Game1` object, run it, and make sure that no exception can escape the

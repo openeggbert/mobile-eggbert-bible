@@ -1,7 +1,5 @@
 # Chapter 14: The XNA API via CNA
 
-## Scope of this chapter
-
 Every C++ file in `mobile-eggbert` that touches rendering, audio, or input does so by calling into
 namespaces named `Microsoft::Xna::Framework::*` — the same namespace tree a 2013 Windows Phone XNA
 4.0 developer would have used. Those namespaces are implemented by CNA, the sibling framework

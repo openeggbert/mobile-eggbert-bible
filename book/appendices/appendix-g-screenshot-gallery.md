@@ -29,7 +29,7 @@ notes — is preserved at `tools/SCREENSHOT_ATTEMPT.md`; this section summarizes
 
 ### `screenshot-title-menu.png`
 
-![Mobile Eggbert's real title/player-select screen: the Eggbert mascot, Player A/B/C save slots each showing main-gate/secondary-gate/Blupi-count progress, a Setup gear icon, and a Play button.](../images/screenshot-title-menu.png)
+![Mobile Eggbert's real title/player-select screen: the Blupi mascot, Player A/B/C save slots each showing main-gate/secondary-gate/Blupi-count progress, a Setup gear icon, and a Play button.](../images/screenshot-title-menu.png)
 
 *A genuine `Texture2D::SaveAsPng` dump of the game's own back buffer, captured mid-run from an
 actually-built, actually-running binary — not a mockup.*

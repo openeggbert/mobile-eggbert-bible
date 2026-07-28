@@ -1,5 +1,10 @@
 # Chapter 3: License and Provenance
 
+This chapter is a close reading of the two files that answer the question `mobile-eggbert`'s
+licensing raises: who owns this code, and under what terms does it circulate? It states plainly
+what each `LICENSE` file actually says, without attempting to resolve where the two overlap — a
+legal question this book is not positioned to adjudicate.
+
 ## Two license files, not one
 
 A reader who clones `mobile-eggbert` and goes looking for "the license" will find two separate

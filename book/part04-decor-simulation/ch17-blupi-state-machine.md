@@ -1,5 +1,10 @@
 # Chapter 17: Blupi — the State Machine
 
+This chapter is a close read of `Decor::BlupiStep()`, the single method that decides, every frame,
+what Blupi is doing and why — walking, jumping, dying, swimming, or reacting to a hazard. It
+follows the function in the order it actually executes, stopping to explain each phase in turn, and
+leaves the mapping from a resolved action to an actual sprite for Chapter 18.
+
 ## The player, as a state machine
 
 Everything the player experiences moment to moment in Speedy Blupi — walking, jumping, riding a

@@ -1,5 +1,10 @@
 # Chapter 18: Blupi Actions and Animation
 
+This chapter picks up exactly where Chapter 17 leaves off. `BlupiStep()` decides *what* Blupi is
+doing; this chapter covers how that decision becomes the sprite actually drawn on screen, via the
+`BlupiAction` enum, `Decor::BlupiSearchIcon()`, and the packed animation-table format underlying
+`Tables::table_blupi`.
+
 ## From gameplay state to a sprite
 
 Chapter 17 traced how `BlupiStep()` decides, frame by frame, what Blupi is *doing* —

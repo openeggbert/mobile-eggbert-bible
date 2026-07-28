@@ -81,8 +81,7 @@ data.
 ### Stop — idle
 ![Blupi Stop animation frames](../images/blupi-action-stop.png)
 
-*`BlupiAction::Stop` (raw id 1): 330 animation frame(s), channel Blupi. Real sprite crop from
-`blupi.png` via `Pixmap::GetSrcRectangle`; see `book/images/MANIFEST.md`.*
+*`BlupiAction::Stop` (raw id 1): 330 animation frame(s), channel Blupi.*
 
 Blupi's default idle loop, and by a wide margin the largest single record in `table_blupi`. Most of
 its 330 slots are the same standing pose; a handful of non-zero entries scattered through the cycle

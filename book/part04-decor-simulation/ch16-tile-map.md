@@ -1,5 +1,11 @@
 # Chapter 16: The Tile Map
 
+This chapter is about `Decor`'s tile map — the two 100×100 grids of icon indices that hold a
+level's static geometry — and, specifically, about what those icon numbers actually mean. It opens
+by testing a hypothesis from this book's own planning notes against the real source, because the
+corrected picture turns out to be a load-bearing fact for nearly everything else in Part IV that
+reads or writes a tile.
+
 ## A correction before we start
 
 This book's own planning notes (`PLAN.md`, written before this chapter's source reading) proposed

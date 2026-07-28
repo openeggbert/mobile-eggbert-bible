@@ -1,7 +1,5 @@
 # Chapter 25: Game Speed and Zoom
 
-## Overview
-
 This chapter covers three related but independent mechanisms: the `GameSpeed` enum that lets a
 `MODERN` build run the simulation faster than the original 20-frames-per-second design, the
 `ZoomCheat` enum that lets a debug build pull the camera back to see more of the level at once, and

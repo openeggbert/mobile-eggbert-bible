@@ -1,7 +1,5 @@
 # Chapter 27: `Decor.hpp` Reference Catalog
 
-## Overview
-
 This chapter is a dense, appendix-style reference to every declaration in
 `include/WindowsPhoneSpeedyBlupi/Decor.hpp` (2,064 lines): the nested types, every `static
 constexpr` constant, every member variable, and every method — public and private. It complements

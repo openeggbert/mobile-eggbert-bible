@@ -13,13 +13,13 @@ verified below directly against `Decor.cpp`, not inferred from the identifier al
 
 *From `Decor.cpp:46-52`:*
 ```
-##   Object AI state machines
-##   Two styles coexist. Most enemies/effects are *table-driven*: a MoveObject moves
-##   linearly between posStart and posEnd (advance/recede speeds + end-dwell timers in
-##   MoveObjectStepLine) while its animation/lifetime is a phase counter indexed into
-##   the Tables animation arrays by MoveObjectStepIcon(). A minority of behaviours are
-##   *hand-coded* with bespoke logic keyed on ObjectType inside MoveObjectStepIcon()
-##   and its helpers (dynamite, charging enemies, followers, cloud-nets, crates).
+ *   ## Object AI state machines
+ *   Two styles coexist. Most enemies/effects are *table-driven*: a MoveObject moves
+ *   linearly between posStart and posEnd (advance/recede speeds + end-dwell timers in
+ *   MoveObjectStepLine) while its animation/lifetime is a phase counter indexed into
+ *   the Tables animation arrays by MoveObjectStepIcon(). A minority of behaviours are
+ *   *hand-coded* with bespoke logic keyed on ObjectType inside MoveObjectStepIcon()
+ *   and its helpers (dynamite, charging enemies, followers, cloud-nets, crates).
 ```
 
 The detection methods in this chapter are how the hand-coded half decides *when* to act: they

@@ -1,7 +1,5 @@
 # Chapter 23: Secret Powers and the Cheat System
 
-## Overview
-
 `Decor` tracks exactly one "special power" bonus for the player at a time — the `SecretPower`
 enum — and, layered on top of ordinary gameplay, an entire parallel debug/cheat subsystem that can
 mutate almost any piece of Blupi's state on demand. The two are related but distinct: `SecretPower`
@@ -447,7 +445,7 @@ completely dead code path in the current state of the repository — present in 
 typed-cheat lookup table (so a player *can* type `"buildofficialmissions"` and see
 `INPUT_DEBUG`/persistent-cheat bookkeeping fire in `InputPad.cpp`), but with no observable gameplay
 effect once `Decor::CheatAction` is reached. This is a concrete instance of the "doc is
-incomplete/stale relative to the real implementation" gap this chapter was asked to look for: the
+incomplete/stale relative to the real implementation" gap this chapter set out to find: the
 documentation's confident "all of them can be triggered" claim does not hold for these two values.
 
 ## `Decor::CheatAction` cheat by cheat

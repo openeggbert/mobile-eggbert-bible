@@ -1,5 +1,11 @@
 # Chapter 15: Decor — Overview
 
+`Decor` is the class that runs Speedy Blupi: it owns the tile map, Blupi's own state machine,
+every moving object in a level, and the rules connecting all three. This chapter is a broad first
+pass over that class — its size, how its data is grouped, and the handful of lifecycle methods
+that drive one frame of simulation from start to finish — before Chapters 16 through 21 each take
+one piece of it in depth.
+
 ## The largest class in the game
 
 If you were handed the `mobile-eggbert` source tree and told to find the game in it, you would

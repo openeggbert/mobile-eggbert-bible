@@ -1,7 +1,5 @@
 # Chapter 12: Game1 — the State Machine
 
-## Overview
-
 `Game1` is the single most important class for understanding how `mobile-eggbert` fits together as
 an application. It is declared across 955 lines in `include/WindowsPhoneSpeedyBlupi/Game1.hpp` and
 implemented across 1,113 lines in `src/WindowsPhoneSpeedyBlupi/Game1.cpp`, and it plays two roles

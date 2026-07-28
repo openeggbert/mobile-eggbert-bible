@@ -1,5 +1,11 @@
 # Chapter 1: What Is Mobile Eggbert
 
+This opening chapter answers a simple question with a complicated answer: what is
+`mobile-eggbert`, and how did it come to be a C++ codebase at all? The migration history covered
+here — decompilation, two framework migrations, and a full language rewrite — is background the
+rest of the book assumes, so it is worth reading first even if you came here to look up one
+specific class or file.
+
 ## A game with four lives
 
 `mobile-eggbert` is a C++ port of *Speedy Blupi*, a puzzle-platformer originally released for

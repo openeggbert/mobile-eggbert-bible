@@ -1,7 +1,5 @@
 # Chapter 24: Missions and `ContinueMission`
 
-## Overview
-
 "Mission" in `mobile-eggbert` is the umbrella term for what a player probably thinks of as a
 "level": one self-contained `worlds/*.txt` map, loaded by index, played from a fixed start
 position to a win or loss outcome. `Decor` itself knows almost nothing about *how* missions are
@@ -169,9 +167,9 @@ completely independent angle (menu logic, not win-condition logic) the same sche
 
 ## `m_buildOfficialMissions`: declared, set once, read never
 
-`SetBuildOfficialMissions(bool)` is a private `Decor` method mentioned by name in this book's
-assignment brief, and it is worth being precise about what it actually does in the current source:
-essentially nothing observable. Its full body is one assignment:
+`SetBuildOfficialMissions(bool)` is a private `Decor` method worth being precise about, because what
+it actually does in the current source is essentially nothing observable. Its full body is one
+assignment:
 
 *From `Decor.cpp:2098-2101`:*
 
@@ -201,7 +199,7 @@ to implement is not present in the running game today.
 
 ## `GetNbVies`/`SetNbVies`: "lives", confirmed
 
-The brief for this chapter asks to verify that "vies" means lives — it does, unambiguously, on two
+It's worth confirming precisely that "vies" means lives — it does, unambiguously, on two
 independent pieces of evidence. First, `GameData.hpp`'s own save-format documentation names the
 field in English directly:
 
@@ -375,9 +373,8 @@ where `m_term`'s value comes from.
 
 `ContinueMissionType` is not a `Decor` type at all — it is declared in its own header,
 `include/WindowsPhoneSpeedyBlupi/def/ContinueMission.hpp`, and used exclusively by `Game1`. It is
-documented here because the assignment brief for this chapter names it directly, and because it is
-the piece that decides *whether* `Decor`'s own quick-save mechanism (`CurrentRead()`/`CurrentWrite()`,
-`Decor.hpp:1856-1881`) gets invoked on a given app resume.
+documented here because it is the piece that decides *whether* `Decor`'s own quick-save mechanism
+(`CurrentRead()`/`CurrentWrite()`, `Decor.hpp:1856-1881`) gets invoked on a given app resume.
 
 *From `include/WindowsPhoneSpeedyBlupi/def/ContinueMission.hpp:29-34`:*
 

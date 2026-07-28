@@ -130,10 +130,9 @@ name suggests it should identify *which* world/region a level belongs to — and
         m_blupiStartDir = ToDirection(Worlds::GetIntField(array, vectorSize, "DescFile", 0, "blupiDir"));
 ```
 
-Only five of the header's seven emitted fields (`posDecor`, `dimDecor`, `music`, `region`,
-`blupiPos`, `blupiDir` — six, correcting the count) are consumed on load; `world` is written by
-whatever produced these files (the original level editor) but is entirely inert in the running
-game. Which mission/world a level belongs to is instead derived at runtime purely from the mission
+Six of the header's seven emitted fields (`posDecor`, `dimDecor`, `music`, `region`, `blupiPos`,
+`blupiDir`) are consumed on load; `world` is written by whatever produced these files (the original
+level editor) but is entirely inert in the running game. Which mission/world a level belongs to is instead derived at runtime purely from the mission
 number passed into `Decor::Read(gamer, rank, bUser)` and the filename convention (see below) — not
 from anything stored inside the file.
 

@@ -25,51 +25,9 @@ proposes naming icon *N* as *X*" — never as if `X` were a real, implemented ty
 Every hazard and terrain predicate in this chapter ultimately rests on the same underlying data:
 `Tables::table_decor_quart`, a per-icon 4×4 sub-tile solidity bitmap already introduced in
 [Chapter 20](ch20-enemy-and-creature-ai.md)'s coverage of `DecorDetect()`. Two simpler,
-whole-tile-granularity queries wrap it directly:
-
-*From `Decor.cpp:7503-7540`:*
-```cpp
-bool Decor::IsPassIcon(int icon)
-{
-    if (icon == 324 && m_time / 4 % 20 >= 18)
-    {
-        return true;
-    }
-    if (icon >= 0 && icon < MAXQUART)
-    {
-        for (int i = 0; i < 16; i++)
-        {
-            if (Tables::table_decor_quart[icon * 16 + i] != 0)
-            {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool Decor::IsBlocIcon(int icon)
-{
-    if (icon < 0 || icon >= MAXQUART)
-    {
-        return false;
-    }
-    if (icon == 324 && m_time / 4 % 20 < 18)
-    {
-        return true;
-    }
-    for (int i = 0; i < 16; i++)
-    {
-        if (Tables::table_decor_quart[icon * 16 + i] == 0)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-```
-
-`IsPassIcon()` returns true — passable — if *none* of an icon's sixteen quart-cells are solid;
+whole-tile-granularity queries wrap it directly, and [Chapter 16](ch16-tile-map.md) already reads
+both in full (`Decor.cpp:7503-7540`) as part of its "one icon, two roles" argument: `IsPassIcon()`
+returns true — passable — only if *none* of an icon's sixteen quart-cells are solid, and
 `IsBlocIcon()` returns true — fully blocking — only if *all sixteen* are. An icon can therefore be
 neither fully passable nor fully blocking under these two whole-tile queries (a slope, say, is
 partially solid) — those in-between cases are exactly what `DecorDetect()`'s fine-grained quart-cell
@@ -690,27 +648,10 @@ other systems query via `IsBalleTraj()` to know a bullet is passing through a gi
 
 "Caisse" is French for crate, and every reference in this section confirms `ObjectType12` — despite
 being documented as "purpose unknown" in `ObjectType.hpp:138` (see
-[Chapter 19](ch19-moving-objects-and-decor-actions.md) for that discrepancy in full) — is in fact
-the crate type throughout this subsystem.
-
-*From `Decor.cpp:9302-9312` (`UpdateCaisse`):*
-```cpp
-void Decor::UpdateCaisse()
-{
-    m_nbRankCaisse = 0;
-    for (int i = 0; i < MAXMOVEOBJECT; i++)
-    {
-        if (m_moveObject[i].type == ObjectType::ObjectType12)
-        {
-            m_rankCaisse[m_nbRankCaisse++] = i;
-        }
-    }
-}
-```
-
-`UpdateCaisse()` rebuilds `m_rankCaisse[]` — the flat list of pool indices classified as crates —
-whenever the pool's layout changes (after `MoveObjectSort()`, or after a crate is destroyed by
-dynamite, as [Chapter 19](ch19-moving-objects-and-decor-actions.md) shows).
+[Chapter 19](ch19-moving-objects-and-decor-actions.md) for that discrepancy, and for `UpdateCaisse()`
+itself, in full) — is in fact the crate type throughout this subsystem. `UpdateCaisse()` rebuilds
+`m_rankCaisse[]`, the flat list of pool indices classified as crates, whenever the pool's layout
+changes — after `MoveObjectSort()`, or after a crate is destroyed by dynamite.
 
 Pushing a crate is a two-stage, atomic group operation, because crates stacked together must move
 as one unit:

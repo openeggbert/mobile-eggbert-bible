@@ -1,5 +1,9 @@
 # Chapter 13: IGame1 and Dependencies
 
+This chapter documents `IGame1`, the interface that lets `Game1`'s major subsystems call back into
+it without each of their headers including `Game1.hpp` directly. It covers why the interface
+exists, the shape it takes, and which concrete classes actually depend on it.
+
 ## Why this interface exists
 
 `IGame1` is a 301-line pure-abstract interface declared in

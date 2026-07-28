@@ -1,7 +1,5 @@
 # Chapter 26: Tile and Icon Catalog
 
-## Overview
-
 Every cell of `Decor::m_decor[100][100]` stores exactly one field: an `intcs icon`
 (`Decor.hpp:113-116`). There is no separate "tile type" enum anywhere in the shipped code — every
 piece of gameplay behavior a tile can have (lethal, blocking, springy, a door, a teleporter, a fan)

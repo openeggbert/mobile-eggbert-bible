@@ -7,11 +7,13 @@ two sources: `Worlds.hpp`/`Worlds.cpp` (the generic parser/serializer) and `Deco
 `Read`/`CurrentRead`/`CurrentWrite` methods (the format's two concrete consumers), cross-checked
 against real files sampled from `mobile-eggbert/worlds/` (78 files, `world001.txt`–`world199.txt`).
 
-<!-- TODO: embed level-map diagram from tools/render_level_map.py output once available -->
+![Reconstructed collision/classification map of world001.txt's 100x100 Decor grid](../images/level-map-world001.png)
 
-At the time this appendix was written, `book/images/MANIFEST.md` did not exist, so no
-`level-map-<worldfile-stem>.png` data-reconstruction diagram is referenced here. The worked example
-below is table/text-only.
+*Figure C.1 — a data-driven reconstruction, not a screenshot, of `worlds/world001.txt`'s 100×100
+`Decor` grid (18 distinct icon values present, range -1..413), built by `tools/render_level_map.py`
+directly from the real level file plus the `Decor::Is*()` collision predicates and
+`Tables::table_decor_quart` (see `book/images/MANIFEST.md`). It illustrates the same file used as
+the worked example in §C.9 below.
 
 ## C.1 Two file kinds, one grammar
 
