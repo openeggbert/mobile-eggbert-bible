@@ -51,19 +51,23 @@ read from the `switch (channel)` in `Pixmap::DrawIcon` (`Pixmap.cpp:550`-`648`):
 | `BlupiYoupieBackground` | `blupiyoupie.png` | 410×380 | 0 | matches file |
 | `GearBackground` | (gear background) | 226×226 | 0 | matches file |
 
-**Important finding, confirm before writing Part IV/V:** the numeric `icon` values stored in
-`Decor::m_decor[][]` (the 100×100 tile grid, populated from the `Decor:` block of a `worlds/*.txt`
-file) are looked up by dozens of `Is*()` predicate methods (`IsLave`, `IsPiege`, `IsDoor`, …) for
-**gameplay/collision classification only** — confirm by reading `Decor.cpp` around those
-predicates and confirming they never call `Pixmap::DrawIcon(PixmapChannel::Element, icon, ...)`
-with the raw tile-grid icon value for the *visible* per-region art. The visible background comes
-from `Pixmap::BackgroundCache(name)` (`Decor.cpp:250`) loading a whole pre-rendered region image
-(`Content/backgrounds/decorNNN.png`), while `m_decor[][]`'s icon numbers are an invisible logic
-layer overlaid on top (which is why `ENUMS.md` can propose named constants for icon values well
-beyond `Element`'s own 290-icon atlas capacity — those numbers never index a real sprite sheet
-directly). Whichever chapter (16 or 26) covers this must verify this claim against the actual
-`Decor.cpp` call sites before stating it as fact, and correct this note in `PLAN.md` if reading
-the code shows otherwise.
+**Resolved finding (originally logged here as an unverified hypothesis; corrected after Chapter 16
+was actually written — this note is kept as a record of the correction, not the live claim):** the
+initial guess was that `m_decor[][]`'s numeric `icon` values are a purely invisible
+gameplay/collision layer, with all visible tile art coming from `Pixmap::BackgroundCache`-loaded
+region images. **Reading `Decor.cpp`'s actual `Build()` tile loop showed this is half right and
+half wrong.** In truth: `Decor` keeps *two* parallel grids, and for the large majority of tiles the
+very same `m_decor[][]` icon integer is used both for collision (`IsPassIcon`/`IsBlocIcon`/etc.)
+**and** as a direct sprite index into `PixmapChannel::Object` (`object-m.png`, a 1301×1431 atlas
+with a 64×64 grid — not `Element` as first guessed) via `Pixmap::QuickIcon`. That resolves the
+"icon numbers exceed 290" puzzle in the *opposite* direction from the original guess: they're not
+avoiding `Element`'s small atlas by staying invisible, they're correctly indexing `Object`'s much
+larger one (~440 usable slots, matching `MAXQUART = 441`). A small, specific exclusion list of
+animated tiles (lava `68`, traps `373`, drips `404`/`410`, switch-doors `384`/`385`, etc.) is
+handled by a second per-frame remapping pass instead of the direct 1:1 mapping, but even those are
+ordinary animated sprites, not invisible logic — see Chapter 16 for the full, source-cited account.
+This correction was propagated to Chapters 44/45 and Appendix C, which had drafted text based on
+the original, incorrect hypothesis.
 
 ## Honest note on scope
 
