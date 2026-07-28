@@ -1,61 +1,52 @@
 # NEXT — current state and what to do next
 
-**Last updated: 2026-07-28, founding session (post-pivot to English + illustrated scope).**
+**Last updated: 2026-07-28. The book's first complete draft is DONE — all 58 chapters + 7
+appendices written, reviewed, and committed.**
 
 ## What's done
 
-- Repository scaffolding: `README.md`, `CLAUDE.md`, `PLAN.md`, `PROGRESS.md`, this file — all in
-  English, reflecting the author's mid-session clarifications: English language, mobile-eggbert
-  only (CNA marginal), real screenshots + a fully illustrated animation system required.
-- Directory structure `book/part01-…` through `book/part11-…`, `book/appendices/`,
-  `book/images/`, `tools/`.
-- Plan for 58 chapters + 7 appendices in `PLAN.md`, including the illustrated Part V
-  (chapters 28–37) and Appendix G (screenshot/visual gallery).
-- Reverse-engineered the exact sprite-atlas grid/slicing algorithm from `Pixmap.cpp` — see
-  `PLAN.md`'s "Sprite atlas algorithm" section. This is what `tools/extract_sprites.py` must use.
+Everything in `PLAN.md`'s plan is written: Parts I–XI (chapters 1–58), Appendices A–G. See
+`book/SUMMARY.md` for the full table (every row `done`) and `PLAN.md`'s "Chapter status" section
+for final numbers (~176,000 words, 167 real images including 2 real captured screenshots).
 
-## What to do next, in order
+Also done:
+- `tools/extract_sprites.py` + `tools/render_level_map.py`: the image-extraction pipeline, fully
+  working and reproducible against a fresh `mobile-eggbert` checkout. `book/images/MANIFEST.md` is
+  the authoritative index of every image's provenance.
+- `tools/SCREENSHOT_ATTEMPT.md` + `tools/screenshot-capture.patch`: a working, reproducible recipe
+  for headlessly building the real game and capturing real screenshots via CNA's `SOFTWARE`
+  backend. Two screenshots exist; more are straightforward to add (see below).
+- One real cross-chapter factual correction is recorded in `PLAN.md`'s session log: the tile-icon
+  "invisible collision layer" hypothesis from the founding session was wrong and was corrected
+  (independently, by two different chapters) once real code was read.
 
-1. **Build the image pipeline first** (blocks Part V's illustrated chapters):
-   - `tools/extract_sprites.py`: crop real animation frames from `Content/icons/*.png` per the
-     algorithm in `PLAN.md`, driven by `Tables.cpp`/`Tables.hpp` animation sequence data
-     (per-`BlupiAction` frame lists, per-`ObjectType` frame lists). Output contact-sheet PNGs to
-     `book/images/`.
-   - `tools/render_level_map.py`: render a real `worlds/*.txt` level's collision layer as a
-     color-coded diagram from the actual `Is*()` predicates in `Decor.cpp` — label clearly as a
-     data reconstruction, not a screenshot.
-   - Verify the `Pillow` Python package is available (it was installed via `pip3 install Pillow`
-     during this session — check it's still present in a fresh session's container).
-2. **Attempt a real, running screenshot** (best-effort, can run in parallel with everything else):
-   clone `cna` as a sibling of `mobile-eggbert` (`/workspace/cna`), try a `SOFTWARE`-backend
-   headless build of the `WindowsPhoneSpeedyBlupi` target first (no display needed at all), fall
-   back to `SDL_RENDERER`/`EASYGL` under `Xvfb` + Mesa `llvmpipe` if `SOFTWARE` doesn't work for a
-   full game (`cna-bible`'s `tools/cna-screenshot-infra/README.md` proved both paths work for
-   CNA's own small demos — a full game is a bigger, less certain lift). A screenshot capture hook
-   will likely need a small, clearly-marked patch to `Game1.cpp`/`Program.cpp` (dump the back
-   buffer via CNA's `Texture2D`/`GetBackBufferData` after N frames, then exit) since
-   mobile-eggbert has no built-in screenshot command. Record the outcome (success, partial,
-   blocked — and why) in this file and in Appendix G once attempted.
-3. **Write chapters wave by wave** per `PLAN.md`'s wave breakdown (Wave 1: Part I–IV chapters
-   1–27, text only; Wave 2: Part V–VIII chapters 28–46, Part V needs step 1 done first; Wave 3:
-   Part IX–XI + appendices, chapters 47–58 + A–G).
-4. After each wave: spot-check 2-3 chapters for grounding (does it cite real code/assets?), fix
-   style/consistency, update `book/SUMMARY.md`, commit, push.
-5. After all three waves and the screenshot attempt: update `PLAN.md`'s session log and this file.
+## What a future session could do next (all optional — this is not a gap list, it's a "further
+depth" list; the book stands on its own as-is)
+
+1. **More screenshots.** Only a title screen and one gameplay frame exist. `tools/screenshot-capture.patch`'s
+   technique generalizes directly — capture a later level, the pause menu, a death/win screen, or a
+   specific hazard in action, by waiting for a different `Def::Phase`/mission state before dumping.
+2. **Editorial pass for voice consistency.** ~15 independent agents wrote this book; each was
+   individually well-grounded and reviewed, but a full read-through for consistent tone/terminology
+   across all 65 files has not been done (only spot-checks were, during the writing session).
+3. **Rebuild `tools/extract_sprites.py`'s output if `mobile-eggbert` changes.** The pipeline is
+   reproducible — re-run it against a newer checkout and regenerate `book/images/` + `MANIFEST.md`
+   if the game's assets or `Tables.cpp` data ever change.
+4. **Deepen any chapter using primary sources this pass didn't reach** — e.g. `mobile-eggbert-legacy`
+   (the decompiled C# origin) was not accessible in this session's environment; Chapter 55 notes
+   this explicitly and would benefit from a real comparison if that repo becomes available.
+5. **If a LaTeX/PDF version is ever wanted**, the Markdown source under `book/` is structured
+   (`partNN/chNN`) to convert cleanly via pandoc or similar — this wasn't attempted since no LaTeX
+   toolchain was available in this session's environment and Markdown serves the stated goal (a
+   reader becoming an expert on the source) without needing one.
 
 ## Open questions / decisions pending the author
 
-- None currently blocking. If a real contradiction turns up while writing (e.g. the actual
-  scope should be different from the plan's estimate), log it in `PLAN.md`'s session log and in
-  this file rather than resolving it silently.
+None blocking. The book is complete and usable as-is.
 
-## Repositories needed to continue
+## Repositories used this session
 
-Add to the session (via the add-repo tool) and clone outside this repository:
-- `openeggbert/mobile-eggbert` — primary source
-- `openeggbert/cna-bible` — style model (form only, not content)
-- `openeggbert/cna` — needed only for the screenshot-build attempt (step 2 above); clone as
-  `/workspace/cna` (sibling of `/workspace/mobile-eggbert`, matching mobile-eggbert's
-  `CNA_GRAPHICS_SOURCE_DIR` default of `../cna`)
-- `openeggbert/mobile-eggbert-legacy` — for the history/migration chapters (Part XI), if not
-  already added
+- `openeggbert/mobile-eggbert` — primary source (cloned read-only at `/workspace/mobile-eggbert`)
+- `openeggbert/cna-bible` — style/methodology model
+- `openeggbert/cna` and `openeggbert/sharp-runtime` — cloned as siblings only for the screenshot
+  build attempt (not for content research; CNA internals are out of this book's scope)

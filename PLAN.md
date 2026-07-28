@@ -217,21 +217,44 @@ See `CLAUDE.md` for the full non-negotiable rules. Summary:
   session; if it doesn't pan out, Appendix G and the affected chapters say so explicitly instead of
   faking a screenshot.
 
-## Chapter status
+## Chapter status: COMPLETE (2026-07-28)
 
-Status column: `not written` / `in progress` / `done (unreviewed)` / `done (reviewed)`. The
-authoritative, continuously-updated status is `book/SUMMARY.md` — this table in `PLAN.md` is only
-for planning work waves, not day-to-day status.
+All 58 chapters and all 7 appendices are written. See `book/SUMMARY.md` for the per-chapter table
+(all rows `done`). Final numbers, measured directly:
 
+- **~176,000 words** of chapter/appendix prose across 65 files.
+- **167 real images** in `book/images/` (~15 MB): 84 Blupi animation sheets, 58 object/creature
+  animation sheets, 8 explosion sheets, 8 full-atlas grid overviews, 3 data-reconstructed level-map
+  diagrams, 4 unmodified real asset copies, and **2 real screenshots captured from an actually
+  built and running headless copy of the game** (see Appendix G and `tools/SCREENSHOT_ATTEMPT.md`).
+- At ~500 words/page, the text alone is in the ~350-page range — inside the honest 300–450 page
+  estimate below — and the 167 real images are genuine additional content on top of that, not
+  page-count padding.
+
+This was executed as a fleet of ~15 parallel background research/writing agents, each independently
+grounding its assigned chapters in direct reads of the real `mobile-eggbert` source, with a review
+pass over each landing batch (spot-checking images visually, verifying surprising claims, fixing
+one real cross-chapter factual correction — see the 2026-07-28 session log entries below) before
+each commit.
+
+Work-wave record (all complete):
 - **Wave 0 (scaffolding):** README, CLAUDE.md, PLAN.md, NEXT.md, PROGRESS.md, `book/SUMMARY.md`,
   directory skeleton for all 11 parts + appendices + `book/images/` + `tools/`.
-- **Wave 1:** Part I–IV (chapters 1–27) — text-only, no image dependency.
-- **Image pipeline:** `tools/extract_sprites.py`, `tools/render_level_map.py`, run to produce
-  `book/images/*.png` — must complete before Part V's illustrated chapters are finalized.
-- **Wave 2:** Part V–VIII (chapters 28–46) — Part V chapters depend on the image pipeline above.
-- **Wave 3:** Part IX–XI + appendices (chapters 47–58 + A–G).
-- **Screenshot attempt:** best-effort headless build + capture, in parallel with the waves above;
-  outcome (success/partial/blocked) recorded in `NEXT.md` and Appendix G.
+- **Wave 1:** Part I–IV (chapters 1–27).
+- **Image pipeline:** `tools/extract_sprites.py`, `tools/render_level_map.py` — produced all 165
+  pipeline-generated images in `book/images/`, fully verified against real source data.
+- **Wave 2:** Part VI–XI + most appendices (chapters 38–58, appendices A–F), run concurrently with
+  the image pipeline since none of it depends on images.
+- **Wave 3:** Part V (chapters 28–37), the illustrated sprite/animation chapters, run once the
+  image pipeline landed.
+- **Screenshot attempt:** succeeded on the first real try via CNA's `SOFTWARE` backend — see
+  Appendix G.
+- **Appendix G:** written last (by the main session, not a sub-agent), since it synthesizes across
+  the whole finished image library.
+
+Future sessions extending this book should treat every chapter as a complete first draft, not a
+stub — further work is about deepening/correcting existing chapters (e.g. capturing more real
+screenshots per Appendix G's "why there are only two" note) rather than filling gaps.
 
 ## Session log
 
