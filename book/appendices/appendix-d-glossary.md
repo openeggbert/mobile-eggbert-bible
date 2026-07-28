@@ -71,6 +71,16 @@ three collectible keys are held (`Key1`/`Key2`/`Key3`/`All`). See
 [Appendix B, §7](appendix-b-enum-catalog.md#7-doorkeyflags--key-inventory-bitmask-5-values-incl-all)
 and [Chapter 22](../part04-decor-simulation/ch22-doors-keys-doorkeyflags.md).
 
+**Doxygen** *(project-specific/technical)* — The documentation-generation tool whose comment
+conventions this codebase follows exhaustively: per `DOXYGEN_DOCUMENTATION_PLAN.md` (summarised in
+`CLAUDE.md`), every `.hpp`/`.cpp` file carries `@file`/`@brief`/`@details`, every class carries
+`@class`/`@brief`/`@details`/`@note`/`@warning`/`@see`, every method documents parameters and
+returns directionally, and every member variable carries a trailing `///<` `@brief`. This
+convention is what makes [Appendix A](appendix-a-class-and-file-catalog.md)'s and
+[Appendix B](appendix-b-enum-catalog.md)'s purpose/meaning columns possible to source directly
+from the code rather than from guesswork. See
+[Chapter 57](../part11-history-and-practice/ch57-doxygen-methodology.md).
+
 **Ecraseur** *(game-specific, French: "crusher")* — Internal name for the crushing-hazard tile
 type. `Decor::IsEcraseur()` is documented as testing "whether a crusher (ecraseur) hazard is
 active at the given position" (`Decor.hpp:1249-1253`), confirming the translation directly.
@@ -89,6 +99,16 @@ neighbour-to-icon mapping (32 entries)" (`Tables.hpp:618-623`), confirming the t
 directly — it is one of several neighbour-bitmask-to-replacement-tile tables alongside
 `table_adapt_decor` (see [Chapter 30](../part05-sprites-rendering-animation/ch30-tables-animation-and-movement-data.md)).
 
+**GameData** *(project-specific/game-specific)* — The class managing persistent save data for up
+to three gamer slots, serialised into a flat byte array (`TotalLength = 640` bytes: a 10-byte
+global header plus three 210-byte per-gamer blocks) that mirrors the original Windows Phone save
+format exactly, per `GameData.hpp`'s file-level `@details`. See
+[Chapter 43](../part08-data-persistence-content/ch43-gamedata-save-format.md).
+
+**GameSpeed** *(technical/game-specific)* — The MODERN-only `enum class` (`Slow`/`Normal`/`Fast`/
+`Faster`/`Fastest`) governing simulation ticks per rendered frame, mapped from the F5–F8 keyboard
+shortcuts. See [Appendix B, §3](appendix-b-enum-catalog.md#3-gamespeed--simulation-speed-multiplier-5-values).
+
 **Glu** *(game-specific, French: "glue")* — Internal name for the sticky-trap hazard.
 `BlupiAction::Glu` is documented as "stuck in glue/trap" and `ObjectType34` is a "goo/glue
 particle (`table_glu`, 25-frame looping Element animation)" that "sticks to the level geometry"
@@ -98,6 +118,28 @@ particle (`table_glu`, 25-frame looping Element animation)" that "sticks to the 
 original 2013 compiled Windows Phone XNA binary, the first step in the port chain documented in
 `README.md`: *"decompiled by the ILSpy to the C# source code."* See
 [Chapter 55](../part11-history-and-practice/ch55-ilspy-decompilation-and-csharp-stubs.md).
+
+**IGame1** *(technical/project-specific)* — The interface exposing the top-level `Game1` object to
+subsystems that would otherwise need a circular header dependency on it: `Decor`, `InputPad`,
+`Pixmap`, and `Sound` all reach back into `Game1` exclusively through this interface
+(`IGame1.hpp`'s file-level `@details`). See
+[Chapter 13](../part03-architecture/ch13-igame1-and-dependencies.md).
+
+**InputPad** *(technical/project-specific)* — The class unifying touch, mouse, keyboard, and
+accelerometer input into the logical `ButtonGlyph` presses and directional speeds the gameplay
+code consumes, per its own file-level description as "the single point of contact between the
+platform input layer... and the game state machine" (`InputPad.hpp`). Also implements the
+MODERN-only typed-cheat-code buffer (see [Appendix E](appendix-e-cheat-code-reference.md)). See
+[Chapter 41](../part07-input/ch41-inputpad-touch-keyboard-accelerometer.md).
+
+**Jauge** *(game-specific, French: "gauge")* — The 124×22-pixel HUD gauge-bar widget used for
+energy, time, and key indicators, with four colour modes (`JaugeMode::Empty`/`Red`/`Blue`/
+`Yellow`) selecting a row in its sprite sheet. See
+[Chapter 36](../part05-sprites-rendering-animation/ch36-jauge-hud-gauges.md).
+
+**KeyPressFlags** *(technical/game-specific)* — The bitmask `enum class` (`None`/`Jump`/`Fire`/
+`Down`) that `InputPad` produces each frame and `Decor` consumes to drive Blupi's state machine.
+See [Appendix B, §4](appendix-b-enum-catalog.md#4-keypressflags--active-virtual-buttons-bitmask-4-values).
 
 **LEGACY / MODERN** *(project-specific)* — The two mutually-exclusive compile-time build
 configurations defined by `Config.hpp`. LEGACY reproduces the original 20 FPS Windows Phone
@@ -132,6 +174,11 @@ slant (`Text.hpp`'s file-level `@details`). See
 (`Decor.hpp:1216-1219`), confirming the translation directly.
 `ENUMS.md`'s proposed (not implemented) `TileIconType` group maps icon 373 to `SpikeTrap`
 ("piège" in its own annotation).
+
+**PixmapChannel** *(technical)* — The `enum class` (16 values, gaps at 7–8) identifying which
+sprite-sheet atlas a draw call targets (`Object`, `Blupi`, `Background`, `Explosion`, `Element`,
+…). See [Appendix B, §10](appendix-b-enum-catalog.md#10-pixmapchannel--sprite-atlas-slot-identifier-16-values-2-gaps)
+and [Chapter 29](../part05-sprites-rendering-animation/ch29-sprite-atlas-system.md).
 
 **Ressort** *(game-specific, French: "spring")* — Internal name for the bounce-spring tile type.
 `Decor::IsRessort()` is documented as testing for "a spring tile... causing an upward bounce"
