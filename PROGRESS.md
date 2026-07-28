@@ -1,10 +1,14 @@
-# Mobile Eggbert Bible — historický log postupu
+# Mobile Eggbert Bible — historical progress log
 
-Tento soubor je historický záznam dokončené práce z předchozích fází. Nová práce se zapisuje do
-`PLAN.md` (sekce "Log sezení") a do `NEXT.md` (aktuální stav pro navazující sezení) — sem se nové
-záznamy nepřidávají za běhu, jen jednou za čas jako souhrn uzavřené fáze.
+This file is a historical record of completed work from previous phases. New work is logged in
+`PLAN.md` (the "Session log" section) and in `NEXT.md` (current state for the next session) — new
+entries aren't added here as work happens, only periodically as a closed phase's summary.
 
-## Fáze 0 — Založení projektu (2026-07-28)
+## Phase 0 — Project founding (2026-07-28)
 
-Založen repozitář, navržena struktura 54 kapitol + 6 příloh napříč 11 částmi v Markdownu. Viz
-`PLAN.md` pro plný rozsahový rozbor a poctivou poznámku k dosažitelnému rozsahu.
+Repository founded. First draft was in Czech with a 54-chapter/6-appendix, text-only plan; the
+author then clarified the book must be in English, focused on mobile-eggbert only (CNA marginal),
+and must include real screenshots plus a fully illustrated animation system. Re-scaffolded in
+English with an expanded 58-chapter/7-appendix plan including an illustrated Part V and a
+screenshot/visual-gallery appendix. See `PLAN.md` for the full scope breakdown and the honest
+scope estimate.

@@ -1,162 +1,254 @@
-# Plán knihy Mobile Eggbert Bible
+# Mobile Eggbert Bible — plan
 
-## Rozsah zdrojového kódu (změřeno 2026-07-28)
+## Source code size (measured 2026-07-28)
 
-`mobile-eggbert` (větev `develop`, commit `07e0a67`):
+`mobile-eggbert` (`develop` branch, commit `07e0a67`):
 
-- `include/WindowsPhoneSpeedyBlupi/**/*.hpp`: 34 souborů
-- `src/WindowsPhoneSpeedyBlupi/**/*.cpp`: 16 souborů
-- Celkem C++ (`.hpp` + `.cpp`) + zbytkové `.cs` stuby: **31 301 řádků**
-  - `Decor.cpp` samotný: **11 720 řádků** (přes třetinu celého projektu — jádro herní simulace)
-  - `Tables.cpp`: 2 208 řádků, `Decor.hpp`: 2 064 řádků, `InputPad.cpp`: 1 970 řádků,
-    `Game1.cpp`: 1 113 řádků
-- `worlds/*.txt`: 78 souborů (textový formát úrovní/uložených her)
-- `Content/{icons,sounds,backgrounds}`: 93 `.wav`, desítky `.png`
-- Existující `.md` dokumentace v repozitáři (vstupní materiál, ne náhrada čtení zdroje):
-  `README.md`, `CLAUDE.md`, `ANDROID.md`, `AUDIO_ANALYSIS.md`, `ENUMS.md` (návrh, ne
-  implementace!), `RAM.md`, `WINDOWS.md`, `TODO.md`, `DOXYGEN_DOCUMENTATION_PLAN.md`,
-  `.Net and XNA used part.md` (prázdný stub), `documentation/Cheat System.md`
+- `include/WindowsPhoneSpeedyBlupi/**/*.hpp`: 34 files
+- `src/WindowsPhoneSpeedyBlupi/**/*.cpp`: 16 files
+- Total C++ (`.hpp` + `.cpp`) plus a handful of residual `.cs` stubs: **31,301 lines**
+  - `Decor.cpp` alone: **11,720 lines** (over a third of the whole project — the gameplay
+    simulation core)
+  - `Tables.cpp`: 2,208 lines, `Decor.hpp`: 2,064 lines, `InputPad.cpp`: 1,970 lines,
+    `Game1.cpp`: 1,113 lines
+- `worlds/*.txt`: 78 files (text-based level / save-game format)
+- `Content/icons/`: 9 sprite-atlas PNGs (`blupi.png`, `blupi1.png`, `object-m.png`, `element.png`,
+  `explo.png`, `button.png`, `pad.png`, `jauge.png`, `text.png`)
+- `Content/backgrounds/`: 38 PNGs (per-region background/decor art, e.g. `decor000.png`, plus
+  title-screen art `blupiyoupie.png`)
+- `Content/sounds/`: 93 `.wav` files
+- Existing `.md` docs in the repo (input material, not a substitute for reading the source):
+  `README.md`, `CLAUDE.md`, `ANDROID.md`, `AUDIO_ANALYSIS.md`, `ENUMS.md` (a **proposal**, not
+  implemented code!), `RAM.md`, `WINDOWS.md`, `TODO.md`, `DOXYGEN_DOCUMENTATION_PLAN.md`,
+  `.Net and XNA used part.md` (empty stub), `documentation/Cheat System.md`
 
-## Poctivá poznámka k rozsahu (analogie k `cna-bible/PROGRESS.md`)
+## Sprite atlas algorithm (read directly from `Pixmap.cpp`, needed by Part V and the tools/ scripts)
 
-Zadání žádá „klidně tisíc stran". `cna-bible` pokrývá **celý** CNA ekosystém (CNA samotné + 5
-grafických backendů + sharp-runtime + easy-gl + free-direct + síť/audio/vstup/storage +
-cross-platform porting na 4 platformách + přes deset satelitních repozitářů) a i tak, při
-důsledném lpění na tom, že každé tvrzení musí být podložené reálným zdrojem, skončila na 233
-stranách — ne na požadovaných 4000. `mobile-eggbert` je **jedna hra**, ~31k řádků, ne ekosystém.
-Poctivý odhad genuinně unikátního, do hloubky jdoucího obsahu (bez vycpávání opakováním nebo
-vymyšlenými pasážemi) je řádově **300–500 stran ekvivalentu** (při ~500 slovech/stránku), rozdělené
-do 54 kapitol + 6 příloh napříč 11 částmi — a to je už extrémně podrobné pokrytí jedné hry: každá
-třída, každá metoda s netriviální logikou, každý enum, formát souboru úrovně po bajtech, build
-pro každou platformu, celá historie migrace C# → C++ → CNA.
+`Pixmap::DrawIcon(channel, icon, ...)` (`Pixmap.cpp:509`) resolves an icon index to a source
+rectangle in the channel's atlas via `Pixmap::GetSrcRectangle` (`Pixmap.cpp:683`):
 
-Cíl proto je: **maximální upřímná hloubka, ne umělý počet stran.** Tento dokument sleduje skutečný
-odhadovaný rozsah v sekci "Stav kapitol" níže a bude upřesňován, jak práce postupuje.
+```cpp
+intcs column = icon % (width / bitmapGridX);
+intcs row    = icon / (width / bitmapGridX);
+// returns Rectangle(gap + column * (bitmapGridX + gap), gap + row * (bitmapGridY + gap),
+//                    iconWidth, iconHeight)
+```
 
-## Metodika
+Per-channel grid parameters (all at `RESOLUTION_SCALE = 1`, i.e. matching the raw PNGs on disk),
+read from the `switch (channel)` in `Pixmap::DrawIcon` (`Pixmap.cpp:550`-`648`):
 
-Viz `CLAUDE.md` pro plné nesmlouvatelné zásady. Shrnutí:
+| Channel | File | Grid cell | Gap | Atlas size |
+|---|---|---|---|---|
+| `Blupi` / `Blupi1_11/12/13` | `blupi.png` / `blupi1.png` | 60×60 | 0 | 600×2040 (10×34 = 340 icons) |
+| `Object` | `object-m.png` | 64×64 | 1 | 1301×1431 |
+| `Element` | `element.png` | 60×60 | 0 | 600×1740 (10×29 = 290 icons) |
+| `Explosion` | `explo.png` | 144×144 base grid, per-icon size from `Tables::table_explo_size[icon]` | 0 | 1440×1440 |
+| `Text` | `text.png` | 32×32 | 0 | 512×256 |
+| `Button` | `button.png` | 40×40 | 0 | 240×1040 |
+| `Pad` | `pad.png` | 140×140 | 0 | 1120×420 |
+| `Jauge` | `jauge.png` | 124×88 (whole image, single icon) | — | 124×88 |
+| `SpeedyBlupiBackground` | `Content/backgrounds/*.png` (via `BackgroundCache`) | 640×160 | 0 | per-file |
+| `BlupiYoupieBackground` | `blupiyoupie.png` | 410×380 | 0 | matches file |
+| `GearBackground` | (gear background) | 226×226 | 0 | matches file |
 
-1. Každá kapitola je založená na skutečném přečtení odpovídajících `.hpp`/`.cpp`/`.txt`/`.md`
-   souborů z `mobile-eggbert` (a případně `cna`, `mobile-eggbert-legacy` pro kontext).
-2. Kódové ukázky = reálné úryvky s citací `soubor:řádek`.
-3. Žádné fiktivní screenshoty (hru zde nelze spustit a vyfotit).
-4. `ENUMS.md` = analytický návrh, nikoli implementovaný kód — musí být takto označen, kdykoliv je
-   citován.
-5. Commit po menších krocích, push po každém.
-6. Kapitoly píšou dílčí agenti (viz session log), ale musí projít kontrolou hlavní relace před
-   commitem — namátková kontrola grounding (skutečně cituje reálný kód?) a konzistence stylu.
+**Important finding, confirm before writing Part IV/V:** the numeric `icon` values stored in
+`Decor::m_decor[][]` (the 100×100 tile grid, populated from the `Decor:` block of a `worlds/*.txt`
+file) are looked up by dozens of `Is*()` predicate methods (`IsLave`, `IsPiege`, `IsDoor`, …) for
+**gameplay/collision classification only** — confirm by reading `Decor.cpp` around those
+predicates and confirming they never call `Pixmap::DrawIcon(PixmapChannel::Element, icon, ...)`
+with the raw tile-grid icon value for the *visible* per-region art. The visible background comes
+from `Pixmap::BackgroundCache(name)` (`Decor.cpp:250`) loading a whole pre-rendered region image
+(`Content/backgrounds/decorNNN.png`), while `m_decor[][]`'s icon numbers are an invisible logic
+layer overlaid on top (which is why `ENUMS.md` can propose named constants for icon values well
+beyond `Element`'s own 290-icon atlas capacity — those numbers never index a real sprite sheet
+directly). Whichever chapter (16 or 26) covers this must verify this claim against the actual
+`Decor.cpp` call sites before stating it as fact, and correct this note in `PLAN.md` if reading
+the code shows otherwise.
 
-## Struktura knihy — 54 kapitol + 6 příloh, 11 částí
+## Honest note on scope
 
-### Part I — Původ a ekosystém (`part01-puvod-a-ekosystem/`)
-1. `ch01-co-je-mobile-eggbert.md` — Co je Mobile Eggbert: historie Speedy Blupi → Windows Phone/XNA
-   (2013) → ILSpy dekompilace → MonoGame → C++ → CNA
-2. `ch02-ekosystem-openeggbert.md` — Mapa ekosystému OpenEggbert (cna, sharp-runtime,
-   mobile-eggbert-core/legacy/libgdx, galaxy-eggbert, vztahy mezi nimi)
-3. `ch03-licence-a-puvod.md` — Licence, autorství, provenience (Epsitec SA, LICENSE soubor)
+The ask was for a book "as long as a thousand pages." `cna-bible` covers the **entire** CNA
+ecosystem (CNA itself + 5 graphics backends + sharp-runtime + easy-gl + free-direct +
+networking/audio/input/storage + cross-platform porting across 4 platforms + a dozen satellite
+repos) and, holding the line that every claim must be source-grounded, still landed at 233 pages —
+not the 4000 originally requested. `mobile-eggbert` is **one game**, ~31k lines, not an ecosystem.
+A text-only honest estimate of genuinely unique, non-padded content is roughly **300–450 pages
+equivalent** (at ~500 words/page) across 58 chapters + 7 appendices. The addition of a fully
+illustrated sprite/animation catalog (potentially dozens of real extracted images across Part V)
+and, if achievable, real screenshots, adds real additional size beyond that text estimate without
+padding — images are not prose page-count filler, they are additional genuine content.
 
-### Part II — Sestavení a spuštění (`part02-sestaveni-a-spusteni/`)
-4. `ch04-prehled-sestaveni.md` — CMakeLists.txt do hloubky: cíle, závislosti, submoduly, backendy
-5. `ch05-linux-build.md` — Linux nativní build
-6. `ch06-windows-a-krizova-kompilace.md` — Windows nativní build a cross-build z Linuxu (MinGW-w64)
-7. `ch07-direct3d-wine-proton.md` — D3D11/D3D12 backendy přes Wine/Proton na Linuxu
-8. `ch08-web-emscripten-build.md` — Web/Emscripten build, virtuální FS, IndexedDB save
-9. `ch09-android-build.md` — Android build (Gradle, NDK, ANDROID.md do hloubky)
-10. `ch10-config-legacy-vs-modern.md` — `Config.hpp`: LEGACY vs MODERN režim, časování, rozlišení
+**Goal: maximum honest depth and completeness, not an artificial page count.** This document
+tracks the actual estimated scope in "Chapter status" below and will be refined as work proceeds.
 
-### Part III — Architektura (`part03-architektura/`)
-11. `ch11-program-a-vstupni-bod.md` — `Program.cpp`, vstupní bod aplikace
-12. `ch12-game1-stavovy-automat.md` — `Game1`: hlavní XNA Game třída, stavový automat fází hry
-13. `ch13-igame1-a-zavislosti.md` — `IGame1` rozhraní, závislosti mezi podsystémy
-14. `ch14-cna-xna-adaptacni-vrstva.md` — Jak se hra mapuje na XNA API skrze CNA
+## Methodology
 
-### Part IV — Simulace Decor (`part04-simulace-decor/`) — nejrozsáhlejší část
-15. `ch15-decor-prehled.md` — `Decor`: přehled zodpovědností a datového modelu
-16. `ch16-mapa-dlazdic.md` — Mapa dlaždic 100×100, `Cellule`, souřadnicové systémy
-17. `ch17-blupi-stavovy-automat.md` — Blupi: stavový automat hráčovy postavy
-18. `ch18-akce-a-animace-blupiho.md` — `BlupiAction` a animační sekvence
-19. `ch19-objekty-a-decor-akce.md` — `MoveObject`, `DecorAction`, `ObjectType`
-20. `ch20-ai-nepratel-a-tvoru.md` — AI nepřátel a tvorů
-21. `ch21-fyzika-a-kolize.md` — Fyzika pohybu a detekce kolizí
-22. `ch22-dvere-klice-a-doorkeyflags.md` — Dveře, klíče, `DoorKeyFlags`, teleporty, výtahy
-23. `ch23-tajne-schopnosti-a-cheat-system.md` — `SecretPower`, cheat systém (`Cheat System.md`)
-24. `ch24-mise-a-continuemission.md` — Cíle mise, `ContinueMission`, podmínky výhry/prohry
-25. `ch25-rychlost-hry-a-zoom.md` — `GameSpeed`, `Zoom`, škálování času
-26. `ch26-katalog-dlazdic-a-ikon.md` — Katalog herních dlaždic/ikon podle chování (na základě
-    skutečných `Is*()` predikátů v `Decor.cpp`, s odkazem na `ENUMS.md` jako analytický zdroj)
-27. `ch27-referencni-katalog-decor-hpp.md` — Úplný katalog členů `Decor.hpp` (metody, proměnné)
+See `CLAUDE.md` for the full non-negotiable rules. Summary:
 
-### Part V — Vykreslování (`part05-vykreslovani/`)
-28. `ch28-pixmap-ipixmap.md` — `Pixmap`/`IPixmap`: vrstva vykreslování sprajtů
-29. `ch29-pixmapchannel-a-vrstveni.md` — `PixmapChannel`, vrstvení pozadí/objektů/UI
-30. `ch30-tables-animace-a-pohyb.md` — `Tables`: animační a pohybové tabulky
-31. `ch31-text-rendering.md` — `Text`: vykreslování textu
-32. `ch32-jauge-ukazatele.md` — `Jauge`: ukazatele/HUD lišty
-33. `ch33-slider-ovladaci-prvek.md` — `Slider`: UI posuvník
+1. Every chapter is grounded in an actual read of the corresponding `.hpp`/`.cpp`/`.txt`/`.md`
+   files in `mobile-eggbert` (and `cna`/`mobile-eggbert-legacy` only where truly needed for
+   context — `cna` internals themselves are out of scope, see `CLAUDE.md`).
+2. Code samples = real excerpts with `file:line` citations.
+3. Images = real sprite crops, real screenshots, or clearly-labeled data-driven reconstructions —
+   never fabricated. See `CLAUDE.md`'s "Images and screenshots" section.
+4. `ENUMS.md` = an analysis/proposal document, not implemented code — must be labeled as such
+   whenever cited.
+5. Commit in small steps, push after each.
+6. Chapters are drafted by sub-agents but must pass a review pass by the main session before being
+   committed — spot-check grounding (does it actually cite real code?) and style consistency.
 
-### Part VI — Zvuk (`part06-zvuk/`)
-34. `ch34-sound-isound-architektura.md` — `Sound`/`ISound` architektura
-35. `ch35-soundchannel-a-mixovani.md` — `SoundChannel`, hlasitost/výška tónu (`tableVolumePitch`)
-36. `ch36-analyza-zvukovych-problemu.md` — Rozbor `AUDIO_ANALYSIS.md`: hlášené problémy se zvukem
+## Book structure — 58 chapters + 7 appendices, 11 parts
 
-### Part VII — Vstup (`part07-vstup/`)
-37. `ch37-inputpad-dotyk-klavesnice-akcelerometr.md` — `InputPad`: sjednocení dotyku/klávesnice/akcelerometru
-38. `ch38-keypressflags-a-mapovani.md` — `KeyPressFlags` a mapování vstupu na akce
+### Part I — Origins and the OpenEggbert Ecosystem (`part01-origins-and-ecosystem/`)
+1. `ch01-what-is-mobile-eggbert.md` — History: Speedy Blupi → Windows Phone/XNA (2013) → ILSpy
+   decompilation → MonoGame → C++ → CNA
+2. `ch02-openeggbert-ecosystem-map.md` — Brief map of the OpenEggbert ecosystem (cna, sharp-runtime,
+   mobile-eggbert-core/legacy/libgdx, galaxy-eggbert) — kept short; CNA itself is out of scope here
+3. `ch03-license-and-provenance.md` — License, authorship, provenance (Epsitec SA, `LICENSE` file)
 
-### Part VIII — Data, perzistence, obsah (`part08-data-perzistence-obsah/`)
-39. `ch39-gamedata-ukladani-her.md` — `GameData`: formát uložených her, 3 sloty hráčů
-40. `ch40-worlds-format-urovni.md` — `Worlds`: načítání úrovní, formát textového souboru úrovně
-41. `ch41-content-pipeline.md` — Obsahový pipeline: ikony, zvuky, pozadí
-42. `ch42-myresource-sprava-zdroju.md` — `MyResource`: správa zdrojů
+### Part II — Building and Running the Game (`part02-building-and-running/`)
+4. `ch04-build-overview.md` — `CMakeLists.txt` in depth: targets, dependencies, submodules, backends
+5. `ch05-linux-build.md` — Linux native build
+6. `ch06-windows-and-cross-compilation.md` — Windows native build and MinGW-w64 cross-build from Linux
+7. `ch07-direct3d-wine-proton.md` — D3D11/D3D12 backends via Wine/Proton on Linux
+8. `ch08-web-emscripten-build.md` — Web/Emscripten build, virtual filesystem, IndexedDB save data
+9. `ch09-android-build.md` — Android build (Gradle, NDK, `ANDROID.md` in depth)
+10. `ch10-config-legacy-vs-modern.md` — `Config.hpp`: LEGACY vs MODERN mode, timing, resolution
 
-### Part IX — Pomocné typy (`part09-pomocne-typy/`)
-43. `ch43-tinypoint-tinyrect.md` — `TinyPoint`, `TinyRect` (nestandardní pořadí polí!)
-44. `ch44-misc-pomocne-funkce.md` — `Misc`: pomocné funkce
-45. `ch45-helper.md` — `Helper`
-46. `ch46-def-zakladni-definice.md` — `Def.hpp`: základní definice a konstanty
+### Part III — Architecture Overview (`part03-architecture/`)
+11. `ch11-program-and-entry-point.md` — `Program.cpp`, the application entry point
+12. `ch12-game1-state-machine.md` — `Game1`: the top-level XNA `Game`, the game-phase state machine
+13. `ch13-igame1-and-dependencies.md` — `IGame1` interface, dependencies between subsystems
+14. `ch14-xna-api-via-cna.md` — How mobile-eggbert's code maps onto the XNA-style API (brief on CNA internals by design)
 
-### Part X — Platformy do hloubky (`part10-platformy/`)
-47. `ch47-android-hluboky-ponor.md` — Android integrace do hloubky (assets symlinky, APK balení)
-48. `ch48-windows-hluboky-ponor.md` — Windows do hloubky (`WINDOWS.md`)
-49. `ch49-web-virtualni-souborovy-system.md` — Web/Emscripten virtuální FS a IndexedDB perzistence
-50. `ch50-ram-analyza-pameti.md` — Rozbor `RAM.md`: analýza spotřeby paměti
+### Part IV — The Decor Simulation (`part04-decor-simulation/`) — the largest part
+15. `ch15-decor-overview.md` — `Decor`: overview of responsibilities and data model
+16. `ch16-tile-map.md` — The 100×100 tile map, `Cellule`, coordinate systems, background-art vs.
+    collision-layer separation
+17. `ch17-blupi-state-machine.md` — Blupi: the player character's state machine
+18. `ch18-blupi-actions-and-animation.md` — `BlupiAction` and animation sequencing
+19. `ch19-moving-objects-and-decor-actions.md` — `MoveObject`, `DecorAction`, `ObjectType`
+20. `ch20-enemy-and-creature-ai.md` — Enemy and creature AI behaviors
+21. `ch21-physics-and-collision.md` — Movement physics and collision detection
+22. `ch22-doors-keys-doorkeyflags.md` — Doors, keys, `DoorKeyFlags`, teleporters, lifts
+23. `ch23-secret-powers-and-cheat-system.md` — `SecretPower`, the cheat system (`Cheat System.md`)
+24. `ch24-missions-and-continuemission.md` — Mission objectives, `ContinueMission`, win/loss conditions
+25. `ch25-game-speed-and-zoom.md` — `GameSpeed`, `Zoom`, time scaling
+26. `ch26-tile-and-icon-catalog.md` — Catalog of gameplay tile behaviors from real `Is*()`
+    predicates in `Decor.cpp` (cross-referencing `ENUMS.md` explicitly as a proposal document)
+27. `ch27-decor-hpp-reference-catalog.md` — Full member catalog of `Decor.hpp` (methods, fields)
 
-### Part XI — Historie a praxe (`part11-historie-a-praxe/`)
-51. `ch51-ilspy-dekompilace-a-csharp-stuby.md` — ILSpy dekompilace, zbytkové C# stuby
+### Part V — Sprites, Rendering, and the Animation System (`part05-sprites-rendering-animation/`) — illustrated
+28. `ch28-pixmap-ipixmap.md` — `Pixmap`/`IPixmap`: the sprite rendering layer
+29. `ch29-sprite-atlas-system.md` — `PixmapChannel` and the icon-grid system, **with real atlas
+    diagrams** (full atlas images with grid overlays showing how `GetSrcRectangle` slices them)
+30. `ch30-tables-animation-and-movement-data.md` — `Tables.hpp`/`.cpp`: the animation and movement data tables
+31. `ch31-blupi-animation-catalog.md` — **Illustrated**: every `BlupiAction` animation sequence,
+    with real cropped frame strips extracted from `blupi.png`/`blupi1.png`
+32. `ch32-creature-and-object-animation-catalog.md` — **Illustrated**: `ObjectType` creatures/objects
+    with real cropped frames from `object-m.png`
+33. `ch33-explosions-and-effects.md` — **Illustrated**: explosion/effect frames from `explo.png`
+34. `ch34-backgrounds-and-level-art.md` — **Illustrated**: per-region background art from
+    `Content/backgrounds/`
+35. `ch35-text-rendering.md` — `Text`: text rendering (illustrated: the font atlas)
+36. `ch36-jauge-hud-gauges.md` — `Jauge`: HUD gauge bars (illustrated)
+37. `ch37-slider-ui-control.md` — `Slider`: UI slider control
+
+### Part VI — Audio (`part06-audio/`)
+38. `ch38-sound-isound-architecture.md` — `Sound`/`ISound` architecture
+39. `ch39-soundchannel-and-mixing.md` — `SoundChannel`, volume/pitch (`tableVolumePitch`)
+40. `ch40-audio-issue-analysis.md` — Analysis of `AUDIO_ANALYSIS.md`'s reported audio issues
+
+### Part VII — Input (`part07-input/`)
+41. `ch41-inputpad-touch-keyboard-accelerometer.md` — `InputPad`: unifying touch/keyboard/accelerometer
+42. `ch42-keypressflags-and-mapping.md` — `KeyPressFlags` and input-to-action mapping
+
+### Part VIII — Data, Persistence, and Content (`part08-data-persistence-content/`)
+43. `ch43-gamedata-save-format.md` — `GameData`: save-game format, 3 gamer slots
+44. `ch44-worlds-level-file-format.md` — `Worlds`: level loading, the level file's text format
+45. `ch45-content-pipeline.md` — Content pipeline: icons, sounds, backgrounds
+46. `ch46-myresource-resource-management.md` — `MyResource`: resource management
+
+### Part IX — Support Types and Utilities (`part09-support-types/`)
+47. `ch47-tinypoint-tinyrect.md` — `TinyPoint`, `TinyRect` (non-standard field order!)
+48. `ch48-misc-utility-functions.md` — `Misc`: utility functions
+49. `ch49-helper.md` — `Helper`
+50. `ch50-def-core-definitions.md` — `Def.hpp`: core definitions and constants
+
+### Part X — Platform Deep Dives (`part10-platform-deep-dives/`)
+51. `ch51-android-deep-dive.md` — Android integration in depth (asset symlinks, APK packaging)
+52. `ch52-windows-deep-dive.md` — Windows in depth (`WINDOWS.md`)
+53. `ch53-web-virtual-filesystem.md` — Web/Emscripten virtual filesystem and IndexedDB persistence
+54. `ch54-ram-memory-analysis.md` — Analysis of `RAM.md`'s memory-usage investigation
+
+### Part XI — History, Migration, and Engineering Practice (`part11-history-and-practice/`)
+55. `ch55-ilspy-decompilation-and-csharp-stubs.md` — ILSpy decompilation, residual C# stubs
     (`Microsoft.Xna.Framework.GamerServices`, `Microsoft.Devices.Sensors`)
-52. `ch52-dotnet-a-xna-migrace.md` — Migrace .NET/XNA (rozbor `.Net and XNA used part.md`)
-53. `ch53-doxygen-metodika.md` — Metodika Doxygen dokumentace (`DOXYGEN_DOCUMENTATION_PLAN.md`)
-54. `ch54-todo-a-roadmapa.md` — `TODO.md` a plán do budoucna
+56. `ch56-dotnet-and-xna-migration.md` — .NET/XNA migration (analysis of `.Net and XNA used part.md`)
+57. `ch57-doxygen-methodology.md` — Doxygen documentation methodology (`DOXYGEN_DOCUMENTATION_PLAN.md`)
+58. `ch58-todo-and-roadmap.md` — `TODO.md` and the forward roadmap
 
-### Přílohy (`appendices/`)
-- A `appendix-a-katalog-trid-a-souboru.md` — Úplný katalog tříd a souborů
-- B `appendix-b-katalog-vyctu.md` — Úplný katalog výčtů (skutečné enum class definice)
-- C `appendix-c-specifikace-formatu-urovni.md` — Specifikace formátu souboru úrovně (`worlds/*.txt`)
-- D `appendix-d-slovnik-pojmu.md` — Slovník pojmů (anglicko-český)
-- E `appendix-e-cheat-kody.md` — Reference cheat kódů
-- F `appendix-f-mapa-repozitare.md` — Mapa repozitářů OpenEggbert (rychlá reference)
+### Appendices (`appendices/`)
+- A `appendix-a-class-and-file-catalog.md` — Full class and file catalog
+- B `appendix-b-enum-catalog.md` — Full catalog of real `enum class` definitions in the codebase
+- C `appendix-c-level-file-format-spec.md` — Level file format specification (`worlds/*.txt`)
+- D `appendix-d-glossary.md` — Glossary of terms
+- E `appendix-e-cheat-code-reference.md` — Cheat code reference
+- F `appendix-f-repository-map.md` — OpenEggbert repository map (quick reference)
+- G `appendix-g-screenshot-gallery.md` — Screenshot and visual asset gallery (index of every real
+  image in `book/images/`, with provenance notes per `CLAUDE.md`'s three allowed image categories)
 
-## Stav kapitol
+## Images pipeline (`tools/`)
 
-Sloupec Stav: `nenapsáno` / `rozpracováno` / `hotovo (nekontrolováno)` / `hotovo (zkontrolováno)`.
-Podrobný, průběžně aktualizovaný stav viz `book/SUMMARY.md` — ten je zdroj pravdy pro stav
-jednotlivých kapitol, tato tabulka v `PLAN.md` slouží jen k plánování vln práce.
+- `tools/extract_sprites.py` (planned) — crops real sprite frames from `Content/icons/*.png` using
+  the exact `GetSrcRectangle` grid algorithm above, driven by animation-sequence data read from
+  `Tables.cpp`/`Tables.hpp`. Outputs per-action/per-object contact-sheet PNGs into `book/images/`.
+- `tools/render_level_map.py` (planned) — renders a real `worlds/*.txt` level's collision-layer
+  grid as a color-coded diagram (by tile behavior category, from the real `Is*()` predicates), for
+  Part IV and Appendix C. Labeled explicitly as a data reconstruction, not a screenshot.
+- Real gameplay/UI screenshots: attempted via a headless build (`SOFTWARE` backend or
+  `SDL_RENDERER`/`EASYGL` under `Xvfb`), following the method `cna-bible`'s
+  `tools/cna-screenshot-infra/README.md` proved out for CNA's own demos. Status tracked in
+  `NEXT.md` — this is genuinely uncertain to succeed for a full game (vs. a small demo) within one
+  session; if it doesn't pan out, Appendix G and the affected chapters say so explicitly instead of
+  faking a screenshot.
 
-- **Vlna 0 (kostra):** README, CLAUDE.md, PLAN.md, NEXT.md, PROGRESS.md, `book/SUMMARY.md`,
-  prázdné adresáře pro všech 11 částí + přílohy.
-- **Vlna 1:** Part I–IV (kapitoly 1–27)
-- **Vlna 2:** Part V–VIII (kapitoly 28–42)
-- **Vlna 3:** Part IX–XI + přílohy (kapitoly 43–54 + A–F)
+## Chapter status
 
-## Log sezení
+Status column: `not written` / `in progress` / `done (unreviewed)` / `done (reviewed)`. The
+authoritative, continuously-updated status is `book/SUMMARY.md` — this table in `PLAN.md` is only
+for planning work waves, not day-to-day status.
 
-### 2026-07-28 — Založení projektu
-- Prázdný repozitář `mobile-eggbert-bible` (žádné commity). Přidán a naklonován `mobile-eggbert`
-  (hlavní zdroj) a `cna-bible` (vzor stylu/metodiky) do sezení.
-- Změřen rozsah zdrojového kódu (31 301 řádků C++, `Decor.cpp` = 11 720 řádků jako jádro).
-- Navržena struktura 54 kapitol + 6 příloh napříč 11 částmi, v Markdownu (LaTeX toolchain v tomto
-  prostředí není dostupný — `pdflatex` chybí).
-- Zapsána poctivá poznámka k rozsahu (1000 stran není dosažitelných jako genuinní, nevycpaný
-  obsah pro jednu hru o 31k řádcích; cílíme na 300–500 stran ekvivalentu jako upřímný, hluboký
-  výsledek — stejný princip jako `cna-bible`).
+- **Wave 0 (scaffolding):** README, CLAUDE.md, PLAN.md, NEXT.md, PROGRESS.md, `book/SUMMARY.md`,
+  directory skeleton for all 11 parts + appendices + `book/images/` + `tools/`.
+- **Wave 1:** Part I–IV (chapters 1–27) — text-only, no image dependency.
+- **Image pipeline:** `tools/extract_sprites.py`, `tools/render_level_map.py`, run to produce
+  `book/images/*.png` — must complete before Part V's illustrated chapters are finalized.
+- **Wave 2:** Part V–VIII (chapters 28–46) — Part V chapters depend on the image pipeline above.
+- **Wave 3:** Part IX–XI + appendices (chapters 47–58 + A–G).
+- **Screenshot attempt:** best-effort headless build + capture, in parallel with the waves above;
+  outcome (success/partial/blocked) recorded in `NEXT.md` and Appendix G.
+
+## Session log
+
+### 2026-07-28 — Project founding, then pivot to English + illustrated scope
+- Empty `mobile-eggbert-bible` repository (no commits). Added and cloned `mobile-eggbert` (primary
+  source) and `cna-bible` (style/methodology model) into the session.
+- Measured source code size (31,301 lines of C++, `Decor.cpp` = 11,720 lines as the core).
+- First draft of the plan was written in **Czech** with 54 chapters/6 appendices and no image
+  plan. The author then clarified mid-session: (1) the book must be in **English**; (2) CNA is to
+  be covered only marginally, mobile-eggbert is the sole subject; (3) the book must include real
+  screenshots from the game and a **complete, illustrated animation system** with real images.
+  Rewrote all scaffolding in English and expanded the plan to 58 chapters + 7 appendices,
+  including a new illustrated sub-part (Part V, chapters 28–37) and Appendix G for the visual
+  gallery.
+- Reverse-engineered the exact sprite-atlas slicing algorithm directly from `Pixmap.cpp`
+  (`GetSrcRectangle`, the per-channel grid table in `DrawIcon`) to make real, pixel-accurate sprite
+  extraction possible — recorded above for `tools/extract_sprites.py` to use.
+- Found (pending in-chapter verification) that the visible per-region background art comes from
+  `Pixmap::BackgroundCache`/`Content/backgrounds/decorNNN.png`, while the numeric tile-grid `icon`
+  values in `Decor::m_decor[][]` are a separate, invisible gameplay-classification layer — an
+  important structural fact for Part IV/Appendix C.
+- Recorded the honest scope estimate: 300–450 pages of text-equivalent content across 58 chapters
+  + 7 appendices, plus genuine additional size from the illustrated sprite/animation catalog and
+  (if achievable) real screenshots — not a padded 1000 pages.

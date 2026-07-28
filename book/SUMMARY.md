@@ -1,123 +1,128 @@
-# Mobile Eggbert Bible — obsah
+# Mobile Eggbert Bible — Table of Contents
 
-Stav: `nenapsáno` / `rozpracováno` / `hotovo`. Aktualizuj při každé změně.
+Status: `not written` / `in progress` / `done`. Update whenever a chapter's status changes.
 
-## Part I — Původ a ekosystém
+## Part I — Origins and the OpenEggbert Ecosystem
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 1 | [Co je Mobile Eggbert](part01-puvod-a-ekosystem/ch01-co-je-mobile-eggbert.md) | nenapsáno |
-| 2 | [Ekosystém OpenEggbert](part01-puvod-a-ekosystem/ch02-ekosystem-openeggbert.md) | nenapsáno |
-| 3 | [Licence a původ](part01-puvod-a-ekosystem/ch03-licence-a-puvod.md) | nenapsáno |
+| 1 | [What Is Mobile Eggbert](part01-origins-and-ecosystem/ch01-what-is-mobile-eggbert.md) | not written |
+| 2 | [The OpenEggbert Ecosystem Map](part01-origins-and-ecosystem/ch02-openeggbert-ecosystem-map.md) | not written |
+| 3 | [License and Provenance](part01-origins-and-ecosystem/ch03-license-and-provenance.md) | not written |
 
-## Part II — Sestavení a spuštění
+## Part II — Building and Running the Game
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 4 | [Přehled sestavení (CMake)](part02-sestaveni-a-spusteni/ch04-prehled-sestaveni.md) | nenapsáno |
-| 5 | [Linux build](part02-sestaveni-a-spusteni/ch05-linux-build.md) | nenapsáno |
-| 6 | [Windows a křížová kompilace](part02-sestaveni-a-spusteni/ch06-windows-a-krizova-kompilace.md) | nenapsáno |
-| 7 | [Direct3D přes Wine/Proton](part02-sestaveni-a-spusteni/ch07-direct3d-wine-proton.md) | nenapsáno |
-| 8 | [Web/Emscripten build](part02-sestaveni-a-spusteni/ch08-web-emscripten-build.md) | nenapsáno |
-| 9 | [Android build](part02-sestaveni-a-spusteni/ch09-android-build.md) | nenapsáno |
-| 10 | [Config: LEGACY vs MODERN](part02-sestaveni-a-spusteni/ch10-config-legacy-vs-modern.md) | nenapsáno |
+| 4 | [Build Overview (CMake)](part02-building-and-running/ch04-build-overview.md) | not written |
+| 5 | [Linux Build](part02-building-and-running/ch05-linux-build.md) | not written |
+| 6 | [Windows and Cross-Compilation](part02-building-and-running/ch06-windows-and-cross-compilation.md) | not written |
+| 7 | [Direct3D via Wine/Proton](part02-building-and-running/ch07-direct3d-wine-proton.md) | not written |
+| 8 | [Web/Emscripten Build](part02-building-and-running/ch08-web-emscripten-build.md) | not written |
+| 9 | [Android Build](part02-building-and-running/ch09-android-build.md) | not written |
+| 10 | [Config: LEGACY vs MODERN](part02-building-and-running/ch10-config-legacy-vs-modern.md) | not written |
 
-## Part III — Architektura
+## Part III — Architecture Overview
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 11 | [Program a vstupní bod](part03-architektura/ch11-program-a-vstupni-bod.md) | nenapsáno |
-| 12 | [Game1: stavový automat](part03-architektura/ch12-game1-stavovy-automat.md) | nenapsáno |
-| 13 | [IGame1 a závislosti](part03-architektura/ch13-igame1-a-zavislosti.md) | nenapsáno |
-| 14 | [CNA/XNA adaptační vrstva](part03-architektura/ch14-cna-xna-adaptacni-vrstva.md) | nenapsáno |
+| 11 | [Program and Entry Point](part03-architecture/ch11-program-and-entry-point.md) | not written |
+| 12 | [Game1: the State Machine](part03-architecture/ch12-game1-state-machine.md) | not written |
+| 13 | [IGame1 and Dependencies](part03-architecture/ch13-igame1-and-dependencies.md) | not written |
+| 14 | [The XNA API via CNA](part03-architecture/ch14-xna-api-via-cna.md) | not written |
 
-## Part IV — Simulace Decor
+## Part IV — The Decor Simulation
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 15 | [Decor: přehled](part04-simulace-decor/ch15-decor-prehled.md) | nenapsáno |
-| 16 | [Mapa dlaždic](part04-simulace-decor/ch16-mapa-dlazdic.md) | nenapsáno |
-| 17 | [Blupi: stavový automat](part04-simulace-decor/ch17-blupi-stavovy-automat.md) | nenapsáno |
-| 18 | [Akce a animace Blupiho](part04-simulace-decor/ch18-akce-a-animace-blupiho.md) | nenapsáno |
-| 19 | [Objekty a Decor akce](part04-simulace-decor/ch19-objekty-a-decor-akce.md) | nenapsáno |
-| 20 | [AI nepřátel a tvorů](part04-simulace-decor/ch20-ai-nepratel-a-tvoru.md) | nenapsáno |
-| 21 | [Fyzika a kolize](part04-simulace-decor/ch21-fyzika-a-kolize.md) | nenapsáno |
-| 22 | [Dveře, klíče, DoorKeyFlags](part04-simulace-decor/ch22-dvere-klice-a-doorkeyflags.md) | nenapsáno |
-| 23 | [Tajné schopnosti a cheat systém](part04-simulace-decor/ch23-tajne-schopnosti-a-cheat-system.md) | nenapsáno |
-| 24 | [Mise a ContinueMission](part04-simulace-decor/ch24-mise-a-continuemission.md) | nenapsáno |
-| 25 | [Rychlost hry a Zoom](part04-simulace-decor/ch25-rychlost-hry-a-zoom.md) | nenapsáno |
-| 26 | [Katalog dlaždic a ikon](part04-simulace-decor/ch26-katalog-dlazdic-a-ikon.md) | nenapsáno |
-| 27 | [Referenční katalog Decor.hpp](part04-simulace-decor/ch27-referencni-katalog-decor-hpp.md) | nenapsáno |
+| 15 | [Decor: Overview](part04-decor-simulation/ch15-decor-overview.md) | not written |
+| 16 | [The Tile Map](part04-decor-simulation/ch16-tile-map.md) | not written |
+| 17 | [Blupi: the State Machine](part04-decor-simulation/ch17-blupi-state-machine.md) | not written |
+| 18 | [Blupi Actions and Animation](part04-decor-simulation/ch18-blupi-actions-and-animation.md) | not written |
+| 19 | [Moving Objects and Decor Actions](part04-decor-simulation/ch19-moving-objects-and-decor-actions.md) | not written |
+| 20 | [Enemy and Creature AI](part04-decor-simulation/ch20-enemy-and-creature-ai.md) | not written |
+| 21 | [Physics and Collision](part04-decor-simulation/ch21-physics-and-collision.md) | not written |
+| 22 | [Doors, Keys, DoorKeyFlags](part04-decor-simulation/ch22-doors-keys-doorkeyflags.md) | not written |
+| 23 | [Secret Powers and the Cheat System](part04-decor-simulation/ch23-secret-powers-and-cheat-system.md) | not written |
+| 24 | [Missions and ContinueMission](part04-decor-simulation/ch24-missions-and-continuemission.md) | not written |
+| 25 | [Game Speed and Zoom](part04-decor-simulation/ch25-game-speed-and-zoom.md) | not written |
+| 26 | [Tile and Icon Catalog](part04-decor-simulation/ch26-tile-and-icon-catalog.md) | not written |
+| 27 | [Decor.hpp Reference Catalog](part04-decor-simulation/ch27-decor-hpp-reference-catalog.md) | not written |
 
-## Part V — Vykreslování
+## Part V — Sprites, Rendering, and the Animation System (illustrated)
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 28 | [Pixmap/IPixmap](part05-vykreslovani/ch28-pixmap-ipixmap.md) | nenapsáno |
-| 29 | [PixmapChannel a vrstvení](part05-vykreslovani/ch29-pixmapchannel-a-vrstveni.md) | nenapsáno |
-| 30 | [Tables: animace a pohyb](part05-vykreslovani/ch30-tables-animace-a-pohyb.md) | nenapsáno |
-| 31 | [Text rendering](part05-vykreslovani/ch31-text-rendering.md) | nenapsáno |
-| 32 | [Jauge: ukazatele](part05-vykreslovani/ch32-jauge-ukazatele.md) | nenapsáno |
-| 33 | [Slider: ovládací prvek](part05-vykreslovani/ch33-slider-ovladaci-prvek.md) | nenapsáno |
+| 28 | [Pixmap/IPixmap](part05-sprites-rendering-animation/ch28-pixmap-ipixmap.md) | not written |
+| 29 | [The Sprite Atlas System](part05-sprites-rendering-animation/ch29-sprite-atlas-system.md) | not written |
+| 30 | [Tables: Animation and Movement Data](part05-sprites-rendering-animation/ch30-tables-animation-and-movement-data.md) | not written |
+| 31 | [The Blupi Animation Catalog](part05-sprites-rendering-animation/ch31-blupi-animation-catalog.md) | not written |
+| 32 | [The Creature and Object Animation Catalog](part05-sprites-rendering-animation/ch32-creature-and-object-animation-catalog.md) | not written |
+| 33 | [Explosions and Effects](part05-sprites-rendering-animation/ch33-explosions-and-effects.md) | not written |
+| 34 | [Backgrounds and Level Art](part05-sprites-rendering-animation/ch34-backgrounds-and-level-art.md) | not written |
+| 35 | [Text Rendering](part05-sprites-rendering-animation/ch35-text-rendering.md) | not written |
+| 36 | [Jauge: HUD Gauges](part05-sprites-rendering-animation/ch36-jauge-hud-gauges.md) | not written |
+| 37 | [Slider: UI Control](part05-sprites-rendering-animation/ch37-slider-ui-control.md) | not written |
 
-## Part VI — Zvuk
+## Part VI — Audio
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 34 | [Sound/ISound architektura](part06-zvuk/ch34-sound-isound-architektura.md) | nenapsáno |
-| 35 | [SoundChannel a mixování](part06-zvuk/ch35-soundchannel-a-mixovani.md) | nenapsáno |
-| 36 | [Analýza zvukových problémů](part06-zvuk/ch36-analyza-zvukovych-problemu.md) | nenapsáno |
+| 38 | [Sound/ISound Architecture](part06-audio/ch38-sound-isound-architecture.md) | not written |
+| 39 | [SoundChannel and Mixing](part06-audio/ch39-soundchannel-and-mixing.md) | not written |
+| 40 | [Audio Issue Analysis](part06-audio/ch40-audio-issue-analysis.md) | not written |
 
-## Part VII — Vstup
+## Part VII — Input
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 37 | [InputPad: dotyk, klávesnice, akcelerometr](part07-vstup/ch37-inputpad-dotyk-klavesnice-akcelerometr.md) | nenapsáno |
-| 38 | [KeyPressFlags a mapování](part07-vstup/ch38-keypressflags-a-mapovani.md) | nenapsáno |
+| 41 | [InputPad: Touch, Keyboard, Accelerometer](part07-input/ch41-inputpad-touch-keyboard-accelerometer.md) | not written |
+| 42 | [KeyPressFlags and Mapping](part07-input/ch42-keypressflags-and-mapping.md) | not written |
 
-## Part VIII — Data, perzistence, obsah
+## Part VIII — Data, Persistence, and Content
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 39 | [GameData: ukládání her](part08-data-perzistence-obsah/ch39-gamedata-ukladani-her.md) | nenapsáno |
-| 40 | [Worlds: formát úrovní](part08-data-perzistence-obsah/ch40-worlds-format-urovni.md) | nenapsáno |
-| 41 | [Content pipeline](part08-data-perzistence-obsah/ch41-content-pipeline.md) | nenapsáno |
-| 42 | [MyResource: správa zdrojů](part08-data-perzistence-obsah/ch42-myresource-sprava-zdroju.md) | nenapsáno |
+| 43 | [GameData: Save Format](part08-data-persistence-content/ch43-gamedata-save-format.md) | not written |
+| 44 | [Worlds: Level File Format](part08-data-persistence-content/ch44-worlds-level-file-format.md) | not written |
+| 45 | [Content Pipeline](part08-data-persistence-content/ch45-content-pipeline.md) | not written |
+| 46 | [MyResource: Resource Management](part08-data-persistence-content/ch46-myresource-resource-management.md) | not written |
 
-## Part IX — Pomocné typy
+## Part IX — Support Types and Utilities
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 43 | [TinyPoint, TinyRect](part09-pomocne-typy/ch43-tinypoint-tinyrect.md) | nenapsáno |
-| 44 | [Misc: pomocné funkce](part09-pomocne-typy/ch44-misc-pomocne-funkce.md) | nenapsáno |
-| 45 | [Helper](part09-pomocne-typy/ch45-helper.md) | nenapsáno |
-| 46 | [Def.hpp: základní definice](part09-pomocne-typy/ch46-def-zakladni-definice.md) | nenapsáno |
+| 47 | [TinyPoint, TinyRect](part09-support-types/ch47-tinypoint-tinyrect.md) | not written |
+| 48 | [Misc: Utility Functions](part09-support-types/ch48-misc-utility-functions.md) | not written |
+| 49 | [Helper](part09-support-types/ch49-helper.md) | not written |
+| 50 | [Def.hpp: Core Definitions](part09-support-types/ch50-def-core-definitions.md) | not written |
 
-## Part X — Platformy do hloubky
+## Part X — Platform Deep Dives
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 47 | [Android do hloubky](part10-platformy/ch47-android-hluboky-ponor.md) | nenapsáno |
-| 48 | [Windows do hloubky](part10-platformy/ch48-windows-hluboky-ponor.md) | nenapsáno |
-| 49 | [Web: virtuální souborový systém](part10-platformy/ch49-web-virtualni-souborovy-system.md) | nenapsáno |
-| 50 | [RAM: analýza paměti](part10-platformy/ch50-ram-analyza-pameti.md) | nenapsáno |
+| 51 | [Android Deep Dive](part10-platform-deep-dives/ch51-android-deep-dive.md) | not written |
+| 52 | [Windows Deep Dive](part10-platform-deep-dives/ch52-windows-deep-dive.md) | not written |
+| 53 | [Web Virtual Filesystem](part10-platform-deep-dives/ch53-web-virtual-filesystem.md) | not written |
+| 54 | [RAM: Memory Analysis](part10-platform-deep-dives/ch54-ram-memory-analysis.md) | not written |
 
-## Part XI — Historie a praxe
+## Part XI — History, Migration, and Engineering Practice
 
-| # | Kapitola | Stav |
+| # | Chapter | Status |
 |---|---|---|
-| 51 | [ILSpy dekompilace a C# stuby](part11-historie-a-praxe/ch51-ilspy-dekompilace-a-csharp-stuby.md) | nenapsáno |
-| 52 | [.NET a XNA migrace](part11-historie-a-praxe/ch52-dotnet-a-xna-migrace.md) | nenapsáno |
-| 53 | [Doxygen metodika](part11-historie-a-praxe/ch53-doxygen-metodika.md) | nenapsáno |
-| 54 | [TODO a roadmapa](part11-historie-a-praxe/ch54-todo-a-roadmapa.md) | nenapsáno |
+| 55 | [ILSpy Decompilation and C# Stubs](part11-history-and-practice/ch55-ilspy-decompilation-and-csharp-stubs.md) | not written |
+| 56 | [.NET and XNA Migration](part11-history-and-practice/ch56-dotnet-and-xna-migration.md) | not written |
+| 57 | [Doxygen Methodology](part11-history-and-practice/ch57-doxygen-methodology.md) | not written |
+| 58 | [TODO and Roadmap](part11-history-and-practice/ch58-todo-and-roadmap.md) | not written |
 
-## Přílohy
+## Appendices
 
-| # | Příloha | Stav |
+| # | Appendix | Status |
 |---|---|---|
-| A | [Katalog tříd a souborů](appendices/appendix-a-katalog-trid-a-souboru.md) | nenapsáno |
-| B | [Katalog výčtů](appendices/appendix-b-katalog-vyctu.md) | nenapsáno |
-| C | [Specifikace formátu úrovní](appendices/appendix-c-specifikace-formatu-urovni.md) | nenapsáno |
-| D | [Slovník pojmů](appendices/appendix-d-slovnik-pojmu.md) | nenapsáno |
-| E | [Cheat kódy](appendices/appendix-e-cheat-kody.md) | nenapsáno |
-| F | [Mapa repozitářů](appendices/appendix-f-mapa-repozitare.md) | nenapsáno |
+| A | [Class and File Catalog](appendices/appendix-a-class-and-file-catalog.md) | not written |
+| B | [Enum Catalog](appendices/appendix-b-enum-catalog.md) | not written |
+| C | [Level File Format Specification](appendices/appendix-c-level-file-format-spec.md) | not written |
+| D | [Glossary](appendices/appendix-d-glossary.md) | not written |
+| E | [Cheat Code Reference](appendices/appendix-e-cheat-code-reference.md) | not written |
+| F | [Repository Map](appendices/appendix-f-repository-map.md) | not written |
+| G | [Screenshot and Visual Gallery](appendices/appendix-g-screenshot-gallery.md) | not written |
