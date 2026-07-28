@@ -208,15 +208,13 @@ entries, spanning desktop GPU APIs, a software rasterizer, and non-visual/experi
 | `SDL_GPU` | Portable but needs `libshaderc` for its runtime ShaderEffect GLSL→SPIR-V compile |
 
 Two of these (`D3D9`, `SDL_GPU`) are called out by the comment as the two backends most recently
-added to `cna` and to this list — a direct trace of the file's own maintenance history. The comment
-also flags one further backend that exists in `cna` but is deliberately **not** in this list yet:
-`SDL_GPU`'s sibling situation is `SDL_GPU`'s own dependency requirement (`libshaderc`), while a
-separate note later in the file (`CMakeLists.txt:216-218`, echoed in `README.md`) explains that
-`cna`'s `SDL_GPU` backend itself only exists on `cna`'s in-progress `feature/sdlgpu` branch and
-isn't merged into `develop` yet — so a consumer tracking `cna`'s `develop` branch (which
-`mobile-eggbert` does, via `CNA_GRAPHICS_SOURCE_DIR`, described below) won't actually have it
-available until that branch lands, even though the name is already present in
-`MOBILE_EGGBERT_BACKENDS`.
+added to `cna` and to this list — a direct trace of the file's own maintenance history. `SDL_GPU`
+carries one further wrinkle beyond its `libshaderc` dependency: a separate note in `README.md`
+(`README.md:216-218`) explains that `cna`'s `SDL_GPU` backend itself only exists on `cna`'s
+in-progress `feature/sdlgpu` branch and isn't merged into `develop` yet — so a consumer tracking
+`cna`'s `develop` branch (which `mobile-eggbert` does, via `CNA_GRAPHICS_SOURCE_DIR`, described
+below) won't actually have it available until that branch lands, even though the name is already
+present in `MOBILE_EGGBERT_BACKENDS`.
 
 ### Platform-driven defaults
 
