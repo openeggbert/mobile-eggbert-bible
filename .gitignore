@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+book/_combined_book.html
+book/mobile-eggbert-bible.pdf
