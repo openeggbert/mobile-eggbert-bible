@@ -36,7 +36,7 @@ actually-built, actually-running binary — not a mockup.*
 
 ### `screenshot-gameplay-level1.png`
 
-![Real gameplay: Eggbert standing in a mission-1 corridor next to a level gate labeled "L", industrial background machinery art, and the tiled collectible-sphere pattern that fills unbuilt background tiles.](../images/screenshot-gameplay-level1.png)
+![Real gameplay: Blupi standing in a mission-1 corridor next to a level gate labeled "L", industrial background machinery art, and the tiled collectible-sphere pattern that fills unbuilt background tiles.](../images/screenshot-gameplay-level1.png)
 
 *Also a genuine back-buffer dump, captured a fixed number of frames after the game's own `Play`
 button handler (`Def::ButtonGlyph::InitPlay` → `SetPhase(Def::Phase::Play, 1)`, the same call a

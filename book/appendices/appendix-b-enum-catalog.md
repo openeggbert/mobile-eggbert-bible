@@ -395,3 +395,15 @@ explicit, per `CLAUDE.md`.
 convention the 19 real enums above already follow. See
 [Chapter 26](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) for the tile/icon catalog
 built from the real `Is*()` predicates that this proposal targets.
+
+## See also
+
+- [Appendix A: Class and File Catalog](appendix-a-class-and-file-catalog.md) — the headers each
+  enum above is declared in.
+- [Appendix E: Cheat Code Reference](appendix-e-cheat-code-reference.md) — the full trigger-to-effect
+  mapping for `Tables::CheatCodes` (§15 above).
+- [Chapter 26: Tile and Icon Catalog](../part04-decor-simulation/ch26-tile-and-icon-catalog.md) —
+  the real `Is*()` predicates that `ENUMS.md`'s proposed enums would replace.
+- [Chapter 18: Blupi Actions and Animation](../part04-decor-simulation/ch18-blupi-actions-and-animation.md)
+  and [Chapter 19: Moving Objects and Decor Actions](../part04-decor-simulation/ch19-moving-objects-and-decor-actions.md)
+  — narrative coverage of `BlupiAction` and `ObjectType`, this catalog's two largest enums.

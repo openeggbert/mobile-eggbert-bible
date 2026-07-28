@@ -159,3 +159,15 @@ No file in this catalog lacks a `@file`/`@brief` Doxygen header; per `CLAUDE.md`
 methodology, the purpose descriptions above are drawn directly from those comments (occasionally
 supplemented by a class-level `@brief`/`@details` one level down when the file-level comment was
 terse), not inferred from filenames.
+
+## See also
+
+- [Appendix B: Enum Catalog](appendix-b-enum-catalog.md) — the `enum class` types declared inside
+  the `decor/` and `def/` header groups catalogued above.
+- [Appendix E: Cheat Code Reference](appendix-e-cheat-code-reference.md) — the cross-subsystem
+  behaviour of `InputPad.cpp`'s typed-cheat-code buffer, noted under Rendering/Input above.
+- [Appendix F: Repository Map](appendix-f-repository-map.md) — how this repository's own files
+  relate to the sibling `cna`/`sharp-runtime` repositories they depend on.
+- [Chapter 15: Decor — Overview](../part04-decor-simulation/ch15-decor-overview.md) and
+  [Chapter 27: Decor.hpp Reference Catalog](../part04-decor-simulation/ch27-decor-hpp-reference-catalog.md)
+  — the narrative treatment of this catalog's largest single subsystem.

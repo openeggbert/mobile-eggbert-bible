@@ -185,3 +185,14 @@ direct calls), but neither has any effect once `CheatAction()` receives them.
   `Ghost`/`Debug`/`Zoom`/`Cheats`/`Quick` cheats or their `InputPad.cpp`-side handling at all — an
   incompleteness rather than an inaccuracy, since those five are gated behind build configurations
   the doc does not discuss.
+
+## See also
+
+- [Appendix B, §15: `Tables::CheatCodes`](appendix-b-enum-catalog.md#15-tablescheatcodes--cheat-identifiers-22-base--up-to-5-build-gated)
+  — the enum itself.
+- [Appendix D: Glossary](appendix-d-glossary.md) — definitions for `ENUMS.md`, `LEGACY`/`MODERN`,
+  and other terms used throughout this appendix.
+- [Chapter 23: Secret Powers and the Cheat System](../part04-decor-simulation/ch23-secret-powers-and-cheat-system.md)
+  — the narrative companion to this appendix.
+- [Chapter 41: InputPad — Touch, Keyboard, Accelerometer](../part07-input/ch41-inputpad-touch-keyboard-accelerometer.md)
+  — the typed-cheat-code buffer's home subsystem.

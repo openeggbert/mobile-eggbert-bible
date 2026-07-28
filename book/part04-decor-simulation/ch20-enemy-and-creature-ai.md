@@ -486,9 +486,8 @@ puff's lifetime; the name "pollution" is simply what the original game called th
 
 ## `MoveObjectPlouf`, `MoveObjectTiplouf`, `MoveObjectBlup`: verified
 
-The assignment for this chapter singled these three out as names that sound like water-splash
-creatures and asked for verification rather than a guess from the name alone. Reading the code
-confirms the intuition, precisely:
+These three names sound like water-splash creatures, and it is worth confirming that reading
+against the code rather than trusting the identifiers alone. They hold up precisely:
 
 *From `Decor.cpp:6991-7003`:*
 ```cpp
@@ -588,8 +587,8 @@ case, by an actual physical simulation of how far it can float.
 
 ## Creature-specific patrol animation
 
-The remaining assignment-listed creatures — bulldozer, fish, bird, wasp, the giant creature, and
-the two Blupi-hostile clones — all share one animation shape inside `MoveObjectStepIcon()`, keyed
+The remaining named creatures — bulldozer, fish, bird, wasp, the giant creature, and the two
+Blupi-hostile clones — all share one animation shape inside `MoveObjectStepIcon()`, keyed
 on the object's own `step` (the four-phase cycle from [Chapter 19](ch19-moving-objects-and-decor-actions.md))
 and which direction it is currently patrolling:
 
@@ -684,9 +683,9 @@ bullet actually travels before hitting a wall.
 
 ## The "ByeBye" sequence: destruction debris, not a departure
 
-The assignment framed "ByeBye" as a possible helicopter-departure sequence; reading the code shows
-it is specifically destruction debris, gated so it only fires when Blupi actually has a helicopter
-to lose:
+The name "ByeBye" might suggest a helicopter-departure sequence; reading the code shows it is
+specifically destruction debris, gated so it only fires when Blupi actually has a helicopter to
+lose:
 
 *From `Decor.cpp:10048-10054`:*
 ```cpp
@@ -778,9 +777,9 @@ so many different call sites across `BlupiStep()`.
 
 ## The "Voyage" sequence: a collectible's flight to the HUD, not a level transition
 
-The assignment raised "level transition?" and "vehicle travel montage?" as hypotheses for
-"Voyage"; the code answers unambiguously: it is the fly-to-HUD animation a collected item plays,
-and the actual reward is only granted at the moment that flight completes.
+"Level transition?" and "vehicle travel montage?" both seem like plausible guesses for what
+"Voyage" means; the code answers unambiguously: it is the fly-to-HUD animation a collected item
+plays, and the actual reward is only granted at the moment that flight completes.
 
 *From `Decor.cpp:10141-10147`:*
 ```cpp

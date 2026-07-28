@@ -269,3 +269,16 @@ names that a given `enum class` value replaces (e.g. `SecretPower::Shield` corre
 original `SEC_SHIELD`, `BlupiAction::Jump` to `ACTION_JUMP`). These are documentation breadcrumbs
 connecting the ported enum to its pre-port identifier, not a namespace that exists in the current
 C++ code.
+
+## See also
+
+- [Appendix A: Class and File Catalog](appendix-a-class-and-file-catalog.md) — where each glossed
+  class/enum is declared.
+- [Appendix B: Enum Catalog](appendix-b-enum-catalog.md) — full value tables for every `enum class`
+  named above.
+- [Appendix C: Level File Format Specification](appendix-c-level-file-format-spec.md) — the
+  `Worlds`/`Decor` file-format terms defined here in more detail.
+- [Appendix E: Cheat Code Reference](appendix-e-cheat-code-reference.md) — the cheat-system terms
+  cross-referenced from several entries above.
+- [Chapter 57: Doxygen Methodology](../part11-history-and-practice/ch57-doxygen-methodology.md) —
+  the documentation convention that makes most of this glossary's citations possible.
